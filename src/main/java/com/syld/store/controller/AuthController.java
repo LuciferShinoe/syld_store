@@ -18,7 +18,7 @@ public class AuthController extends BaseController{
 
     @RequestMapping("/Register")
     public String Register(Model model) {
-        return  view(model, "Register Page", "Register", "layout/client_Register");
+        return  view(model, "Register Page", "Register", "layout/client_layout");
 
     }
 }
