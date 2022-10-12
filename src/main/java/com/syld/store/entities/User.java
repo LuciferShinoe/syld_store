@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -13,7 +14,6 @@ public class User {
     @Id
     private String id;
 
-
     @Column
     private String username;
 
@@ -21,10 +21,25 @@ public class User {
     private String email;
 
     @Column
+    @Size(min = 8, max = 16)
     private String password;
 
+    @Column
+    private boolean state = Boolean.TRUE;
+
+    @Column
+    private boolean verify = Boolean.FALSE;
+
+    @Column
+    private String address;
+
+    @Column
+    @Size(min = 10, max = 11)
+    private String PhoneNumber;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    Cart cart = new Cart();
+
+    @OneToOne
     Role role = new Role();
 }
