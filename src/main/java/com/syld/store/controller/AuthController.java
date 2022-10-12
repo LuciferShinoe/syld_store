@@ -28,12 +28,12 @@ public class AuthController extends BaseController{
 
 
     @RequestMapping("/Register")
-<<<<<<< HEAD
+
     public String Register(Model model) { return  view(model, "Register Page", "Register", "layout/client_layout");}
-=======
+
     public String Register(Model model) {
         return  view(model, "Register Page", "Register", "layout/client_layout");
->>>>>>> 46a935ad8fbfb52974a5eec36639b3a067d64d14
+
 
 
     @PostMapping(value = "Save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
