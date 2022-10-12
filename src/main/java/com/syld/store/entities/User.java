@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,11 +40,18 @@ public class User {
     @Size(min = 10, max = 11)
     private String PhoneNumber;
 
-    @OneToOne
-    Cart cart = new Cart();
+    private Timestamp create_at = new Timestamp(System.currentTimeMillis());
+    private Timestamp update_at = new Timestamp(System.currentTimeMillis());
+
+    @OneToOne(mappedBy = "user")
+    Card card;
 
 
 
     @OneToOne
-    Role role = new Role();
+    Role role;
+
+    @OneToMany(mappedBy = "admin")
+    List<Bill> bills = new ArrayList<>();
+
 }

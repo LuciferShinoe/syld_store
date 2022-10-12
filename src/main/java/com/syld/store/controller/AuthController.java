@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class AuthController extends BaseController{
 
     @Autowired
-    UserClientService userClientService;
+    UserService;
 
     @GetMapping(path = "/login")
     public String Login(Model model){

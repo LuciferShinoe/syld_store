@@ -9,20 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
-public class Cart {
+@Setter
+public class Brand {
 
     @javax.persistence.Id
     private String Id;
+
+    @Column(unique = true)
+    private String brand_name;
+
+    @Column
+    private String brand_desc;
 
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
 
-    @ManyToOne
-    User user;
+    @OneToMany(mappedBy = "brand")
+    List<Product> productList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "cart")
-    ProductCart productCart;
+    public void addProductToBrand(Product product) {
+        this.productList.add(product);
+    }
 }
