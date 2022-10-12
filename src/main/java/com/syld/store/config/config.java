@@ -28,7 +28,11 @@ public class config {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
+<<<<<<< HEAD
         http.authorizeHttpRequests().antMatchers( "/auth/login", "/auth/register", "/auth/logout").permitAll();
+=======
+        http.authorizeHttpRequests().antMatchers( "/auth/login", "/auth/register","/admin/**").permitAll();
+>>>>>>> d821f363dd6611f3e33b5b110406b5b4867cfb3d
         http.authorizeHttpRequests().anyRequest().authenticated().and().formLogin(
                 form -> form.loginPage("/auth/login")
                         .usernameParameter("email")
