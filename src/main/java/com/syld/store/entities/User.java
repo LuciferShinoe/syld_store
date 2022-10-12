@@ -46,6 +46,8 @@ public class User {
     @OneToOne(mappedBy = "user")
     Card card;
 
+
+
     @OneToOne
     Role role;
 
