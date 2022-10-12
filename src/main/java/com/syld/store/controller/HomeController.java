@@ -19,5 +19,7 @@ public class HomeController extends BaseController{
     public String Index(Model model) {
         return view(model,"Home","index",this.layout_path);
     }
+
+
 }
 

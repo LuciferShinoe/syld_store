@@ -24,6 +24,8 @@ public class User {
     private String password;
 
 
+
+
     @OneToOne
     @JoinColumn(name = "user_id")
     Role role = new Role();
