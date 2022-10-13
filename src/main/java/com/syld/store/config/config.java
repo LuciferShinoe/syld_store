@@ -28,14 +28,19 @@ public class config {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeHttpRequests().antMatchers( "/auth/login", "/auth/register", "/auth/logout").permitAll();
-        http.authorizeHttpRequests().anyRequest().authenticated().and().formLogin(
+        http.authorizeHttpRequests()
+                .antMatchers( "/admin/**").authenticated()
+                .anyRequest().permitAll();
+
+        http.formLogin(
                 form -> form.loginPage("/auth/login")
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .successHandler(handleSuccessAuthentication)
                         .failureHandler(handleFailureAuthentication)
         );
+
+
         http.logout().logoutUrl("/logout");
 
         return http.build();
@@ -46,7 +51,4 @@ public class config {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/assets/**");
     }
-
-
-
 }

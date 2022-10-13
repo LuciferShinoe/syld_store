@@ -13,11 +13,13 @@ public class UserClientDto {
     @NotEmpty(message = "Không được để trống trường email")
     @Email(message = "Định dạng email")
     String email;
-    String userName;
+    @NotEmpty(message = "Không được để trống trường username !")
+    String username;
     String address;
-    String role;
+    String role_name = "role_user";
     @NotEmpty(message = "Không được để trống trường mật khẩu !")
     String password;
     @NotEmpty(message ="Không được để trống trường nhâp lại mật khẩu !")
     String rePassword;
+    String phoneNumber;
 }

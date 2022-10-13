@@ -1,7 +1,6 @@
 package com.syld.store.services.user;
 
 import com.syld.store.entities.User;
-import com.syld.store.entities.UserClient;
 import com.syld.store.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

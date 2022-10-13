@@ -38,7 +38,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="drop"><a href="#">Shop</a>
+                            <li class="drop"><a href="#">Shoes</a>
                                 <div class="megamenu mega03">
                                     <ul class="item item03">
                                         <li class="title">Shop Layout</li>
@@ -68,7 +68,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="drop"><a href="shop-grid.html">Books</a>
+                            <li class="drop"><a href="shop-grid.html">Perfume</a>
                                 <div class="megamenu mega03">
                                     <ul class="item item03">
                                         <li class="title">Categories</li>

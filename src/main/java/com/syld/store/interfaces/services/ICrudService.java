@@ -1,14 +1,13 @@
 package com.syld.store.interfaces.services;
 
 public interface ICrudService<E, TypeId> {
-    void save(E entity);
+    void save(E entity) throws Exception;
 
-    E save_entity(E entity);
+    E save_entity(E entity) throws Exception;
 
-    void update(E entity);
+    void update(E entity) throws Exception;
 
-    E update_entity(E entity);
+    E update_entity(E entity) throws Exception;
 
-    void remove(TypeId Id);
-
+    void remove(TypeId Id) throws Exception;
 }

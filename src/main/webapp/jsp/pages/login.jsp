@@ -5,6 +5,7 @@
             <div class="col-5 ">
                 <div class="my__account__wrapper" >
                     <h3 class="account__title" >Login</h3>
+                    <p style="color: red" class="lead fw-normal mb-0 me-3">${message}</p> <br>
                     <form action="login" method="post">
                         <div class="account__form">
                             <div class="input__box">
@@ -24,7 +25,7 @@
                                 </label>
                             </div>
                             <a class="forget_pass" href="#">Lost your password?</a>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? </p><a class="Register" href="#">Register.</a>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? </p><a class="Register" href="register">Register.</a>
                         </div>
                     </form>
                 </div>
