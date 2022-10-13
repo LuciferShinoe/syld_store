@@ -32,4 +32,13 @@ public class BaseController {
         }
         return null;
     }
+    public String getAuthErr(String code){
+        if (Objects.equals(code,"error.authen.default")){
+            return "";
+        }else if (Objects.equals(code,"error.authen.wrong.password")){
+            return "Email Or Password Incorrect!";
+        }else {
+            return code;
+        }
+    }
 }

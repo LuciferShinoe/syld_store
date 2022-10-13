@@ -17,7 +17,15 @@ public class StoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StoreApplication.class, args);
 	}
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource
+				= new ReloadableResourceBundleMessageSource();
 
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
+	}
 //	@Bean
 //	CommandLineRunner runner(RoleService roleService){
 //		return runner -> {

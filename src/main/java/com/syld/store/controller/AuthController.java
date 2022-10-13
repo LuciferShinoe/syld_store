@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,8 +48,9 @@ public class AuthController extends BaseController {
         if (this.isLogin() != null) {
             return this.isLogin();
         }
+        model.addAttribute("user",new UserClientDto());
         if (error != null)
-            model.addAttribute("message",messageConfig.getMessage(error));
+            model.addAttribute("message",getAuthErr(error));
         return view(model, "Login Page ", "login", "layout/client_layout");
     }
 
@@ -62,7 +64,7 @@ public class AuthController extends BaseController {
             return this.isLogin();
         }
         if (error != null)
-            model.addAttribute("message", messageConfig.getMessage(error));
+            model.addAttribute("message", getAuthErr(error));
         model.addAttribute("user_reg", new UserClientDto());
         return view(model, "Register Page ", "register", "layout/client_layout");
     }
