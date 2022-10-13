@@ -4,6 +4,7 @@ import com.syld.store.controller.BaseController;
 import com.syld.store.dto.ProductDto;
 import com.syld.store.interfaces.controllers.ICrudController;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,8 +15,9 @@ import javax.validation.Valid;
 @RequestMapping(path = "/admin/products")
 public class ProductController extends BaseController {
 
-    public void save(@Valid @ModelAttribute ProductDto entity) {
-
+    @GetMapping(path = "/product/create")
+    public String create(Model model, @RequestParam(required = false)String error){
+        return view(model, "Add Product", "product/create","layout/admin_layout");
     }
 
 //    @GetMapping("/{id}")
