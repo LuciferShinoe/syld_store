@@ -19,9 +19,6 @@ public class ProductController extends BaseController {
     public String create(Model model, @RequestParam(required = false)String error){
         return view(model, "Add Product", "product/create","layout/admin_layout");
     }
-    public void save(@Valid @ModelAttribute ProductDto entity) {
-
-    }
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<?> getById(@Valid @ModelAttribute ProductDto productDto, @PathVariable String id) {

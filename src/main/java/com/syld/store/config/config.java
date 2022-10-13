@@ -33,7 +33,7 @@ public class config {
         http.authorizeHttpRequests()
                 .antMatchers( "/admin/**").authenticated()
                 .anyRequest().permitAll();
-
+                
         http.formLogin(
                 form -> form.loginPage("/auth/login")
                         .usernameParameter("email")
