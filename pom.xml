@@ -17,8 +17,9 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
-			<groupId>javax.servlet</groupId>
+				<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
 		<dependency>
@@ -76,7 +77,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -93,5 +93,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -1,6 +1,10 @@
 package com.syld.store.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+
+import java.util.Objects;
 
 public class BaseController {
 
@@ -17,5 +21,15 @@ public class BaseController {
         }
         model.addAttribute("title", title);
         return layout_path;
+    }
+    public String isLogin(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.isAuthenticated()){
+            if (!Objects.equals(authentication.getName(),"anonymousUser")){
+                return "redirect:/home";
+            }
+        }
+        return null;
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 public class Product {
 
     @javax.persistence.Id
-    private String Id;
+    private String id;
 
     @Column(unique = true)
     private String product_name;

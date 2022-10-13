@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,30 +32,18 @@ public class RoleServiceIpm implements RoleService{
     }
 
     @Override
-    public RoleDto save_entity(RoleDto entity) throws Exception{
-    // chuyển lỗi cho controller
-        try{
-            Role role = new ModelMapper().map(entity, Role.class);
-            role.setId(UUID.randomUUID().toString());
-
-            return new ModelMapper().map(roleRepository.save(role),RoleDto.class);
-        }catch (Exception e){
-            throw e;
-        }
-    }
-
-    @Override
     public void update(RoleDto entity) {
 
     }
 
     @Override
-    public RoleDto update_entity(RoleDto entity) {
-        return null;
+    public void remove(String Id) throws Exception {
+
     }
 
     @Override
-    public void remove(String Id) {
-
+    public Role getByName(String role_name) {
+        Optional<Role> role = roleRepository.findByRole_name(role_name);
+        return role.orElse(null);
     }
 }

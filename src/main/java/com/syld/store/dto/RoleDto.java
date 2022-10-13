@@ -7,8 +7,13 @@ import lombok.Setter;
 @Setter
 public class RoleDto {
 
-    public RoleDto(){}
-    public RoleDto(String id,String name){this.role_name=role_name;this.id = id;};
+    public RoleDto() {
+    }
+
+    public RoleDto(String id, String name) {
+        this.role_name = name;
+        this.id = id;
+    };
 
     private String id;
 
