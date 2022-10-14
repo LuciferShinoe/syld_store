@@ -101,6 +101,7 @@
                                                             src="${pageContext.request.contextPath}/assets/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
+
                                                 <div class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
                                                         <img class="image-thumb-preview ec-image-preview"

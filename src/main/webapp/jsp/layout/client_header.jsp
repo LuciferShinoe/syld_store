@@ -27,5 +27,6 @@
     <script src="${pageContext.request.contextPath}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/vendor/jquery.min.js"></script>
 
+
 </head>
 

@@ -7,7 +7,7 @@
                     <div class="footer__widget footer__menu">
                         <div class="ft__logo">
                             <a href="index.html">
-                                <img src="${pageContext.request.contextPath}/assets/images/logo/3.png" alt="logo">
+                                <img src="${pageContext.request.contextPath}/assets/images/logo/logo.gif" alt="logo">
                             </a>
                             <p>There are many variations of passages of Lorem Ipsum available, but the majority
                                 have suffered duskam alteration variations of passages</p>

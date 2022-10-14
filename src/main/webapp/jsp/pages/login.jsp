@@ -60,16 +60,15 @@
         if (!isValid){
             e.preventDefault()
         }else {
-            e.preventDefault()
-
-            $.ajax({
-                url:"${pageContext.request.contextPath}/auth/valid_email",
-                method:"post",
-                data:JSON.stringify(document.getElementById("email").value.trim()),
-                success:(res)=>{
-                    console.log(res)
-                }
-            })
+            <%--e.preventDefault()--%>
+            <%--$.ajax({--%>
+            <%--    url:"${pageContext.request.contextPath}/auth/valid_email",--%>
+            <%--    method:"post",--%>
+            <%--    data:JSON.stringify(document.getElementById("email").value.trim()),--%>
+            <%--    success:(res)=>{--%>
+            <%--        console.log(res)--%>
+            <%--    }--%>
+            <%--})--%>
         }
     }
 
