@@ -1,8 +1,3 @@
-<head>
-    <%@include file="./admin_header.jsp"%>
-</head>
-<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-light ec-header-light" id="body">
-<!--  WRAPPER  -->
 <div class="wrapper">
 
     <!-- LEFT MAIN SIDEBAR -->
@@ -255,11 +250,4 @@
             </div>
         </div>
     </div>
-        </div>
-    </div>
-
-</body>
-
-<footer class="footer mt-auto">
-    <%@include file="./admin_footer.jsp"%>
-</footer>
+</div>

@@ -28,9 +28,13 @@ public class ProductDto {
     @Min(1)
     private int product_quantity;
 
+    private  String size;
+
     private int sale_off = 0;
 
     List<MultipartFile> files = new ArrayList<>();
+
+    private String group_tag;
 
     private String brand_id;
 
