@@ -13,10 +13,29 @@
 <link href="../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
 
 <!-- PLUGINS CSS STYLE -->
-<link href="/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/admin/plugins/simplebar/simplebar.css" rel="stylesheet" />
 
 <!-- ekka CSS -->
-<link id="ekka-css" rel="stylesheet" href="assets/css/ekka.css" />
+<link id="ekka-css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/css/ekka.css" />
 
 <!-- FAVICON -->
-<link href="assets/img/favicon.png" rel="shortcut icon" />
+<link href="${pageContext.request.contextPath}/assets/admin/img/favicon.png" rel="shortcut icon" />
+
+<!-- Chart -->
+<script src="${pageContext.request.contextPath}/assets/plugins/charts/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/chart.js"></script>
+
+<!-- Google map chart -->
+<script src="${pageContext.request.contextPath}/assets/plugins/charts/google-map-loader.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/charts/google-map.js"></script>
+
+<!-- Date Range Picker -->
+<script src="${pageContext.request.contextPath}/assets/plugins/daterangepicker/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/date-range.js"></script>
+
+<!-- Option Switcher -->
+<script src="${pageContext.request.contextPath}/assets/plugins/options-sidebar/optionswitcher.js"></script>
+
+<!-- Ekka Custom -->
+<script src="${pageContext.request.contextPath}/assets/js/ekka.js"></script>
