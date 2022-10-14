@@ -58,6 +58,11 @@ public class UserServiceIpm implements UserService {
     public void remove(String Id) {
 
     }
+
+    @Override
+    public UserClientDto findByEmail(String email) {
+        return new ModelMapper().map(userRepository.findByEmail(email).orElse(null),UserClientDto.class);
+    }
 }
 
 

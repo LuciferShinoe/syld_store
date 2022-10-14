@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,24 @@ public class AuthController extends BaseController {
         if (error != null)
             model.addAttribute("message",getAuthErr(error));
         return view(model, "Login Page ", "login", "layout/client_layout");
+    }
+
+    @PostMapping(path = "/valid_email")
+    public ResponseEntity<?> GetUserByEmail(@RequestBody String payload){
+        Map<String,String> result = new HashMap<>();
+        try {
+            log.info(payload);
+            UserClientDto userClientDto = userService.findByEmail(payload);
+            if (userClientDto!=null){
+                result.put("result","false");
+            }else {
+                result.put("result","true");
+            }
+        }catch (Exception e){
+            result.put("result",e.getMessage());
+            result.put("error","true");
+        }
+        return ResponseEntity.ok().body(result);
     }
 
     @GetMapping(path = "/register")
