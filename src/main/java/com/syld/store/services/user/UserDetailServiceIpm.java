@@ -33,4 +33,6 @@ public class UserDetailServiceIpm implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(user.get().getRole().getRole_name()));
         return  new org.springframework.security.core.userdetails.User(username,user.get().getPassword(),authorities);
     }
+
+
 }

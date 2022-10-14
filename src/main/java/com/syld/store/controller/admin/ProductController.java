@@ -16,26 +16,9 @@ import javax.validation.Valid;
 @RequestMapping(path = "/admin/products")
 public class ProductController extends BaseController {
 
-    @Autowired
-    ProductService productService;
-
-    @GetMapping("/create")
-    public String Create(Model model){
-        model.addAttribute("productDto", new ProductDto());
-        return "create";
-    }
-
-    @GetMapping("/list")
-    public String getByPage(@PagingParam(path = "product") ResponseDataTableDto responseDataTableDto) {
-        try {
-            productService.list(responseDataTableDto);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void save(@Valid @ModelAttribute ProductDto entity) {
-
+    @GetMapping(path = "/product/create")
+    public String create(Model model, @RequestParam(required = false)String error){
+        return view(model, "Add Product", "product/create","layout/admin_layout");
     }
 
 //    @GetMapping("/{id}")
