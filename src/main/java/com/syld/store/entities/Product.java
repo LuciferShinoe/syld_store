@@ -36,6 +36,10 @@ public class Product {
 
     private int sale_off = 0;
 
+    private String slug;
+
+
+
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
@@ -43,6 +47,13 @@ public class Product {
     @ManyToOne
     Brand brand;
 
+    @OneToMany(mappedBy = "product")
+    List<Color> colors = new ArrayList<>();
+
+
+
+    @OneToMany(mappedBy = "product")
+    List<com.syld.store.entities.Size> sizes = new ArrayList<>();
     @ManyToOne
     Category category;
 

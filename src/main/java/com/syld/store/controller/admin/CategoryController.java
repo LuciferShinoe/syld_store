@@ -22,10 +22,10 @@ public class CategoryController extends BaseController {
     public String GetByPage(Model model,@RequestParam(required = true) int page, @RequestParam(required = true) int limit){
        try {
            model.addAttribute("categories",categoryService.getByPage(page,limit));
-           return view(model,"Categories","")
        }catch (Exception e){
 
        }
+       return "";
     }
 
 }
