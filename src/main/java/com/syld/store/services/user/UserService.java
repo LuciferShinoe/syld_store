@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Service
 public interface UserService extends ICrudService<UserClientDto,String> {
-
+    UserClientDto findByEmail(String email);
 }
