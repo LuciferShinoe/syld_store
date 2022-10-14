@@ -2,8 +2,10 @@ package com.syld.store.controller.admin;
 
 import com.syld.store.controller.BaseController;
 import com.syld.store.dto.ProductDto;
-import com.syld.store.interfaces.controllers.ICrudController;
+import com.syld.store.services.user.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,6 +15,24 @@ import javax.validation.Valid;
 // if using view change it to controller
 @RequestMapping(path = "/admin/products")
 public class ProductController extends BaseController {
+
+    @Autowired
+    ProductService productService;
+
+    @GetMapping("/create")
+    public String Create(Model model){
+        model.addAttribute("productDto", new ProductDto());
+        return "create";
+    }
+
+    @GetMapping("/list")
+    public String getByPage(@PagingParam(path = "product") ResponseDataTableDto responseDataTableDto) {
+        try {
+            productService.list(responseDataTableDto);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void save(@Valid @ModelAttribute ProductDto entity) {
 
