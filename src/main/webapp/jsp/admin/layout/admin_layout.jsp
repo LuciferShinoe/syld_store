@@ -1,5 +1,5 @@
 <head>
-    <%@include file="./admin_header.jsp"%>
+    <%@include file="admin_header.jsp"%>
 </head>
 <body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-light ec-header-light" id="body">
 <!--  WRAPPER  -->
@@ -261,5 +261,5 @@
 </body>
 
 <footer class="footer mt-auto">
-    <%@include file="./admin_footer.jsp"%>
+    <%@include file="admin_footer.jsp"%>
 </footer>

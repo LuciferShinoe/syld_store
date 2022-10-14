@@ -13,7 +13,7 @@
 <link href="../../../../cdn.jsdelivr.net/npm/%40mdi/font%404.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
 
 <!-- PLUGINS CSS STYLE -->
-<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
+<link href="/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
 
 <!-- ekka CSS -->
 <link id="ekka-css" rel="stylesheet" href="assets/css/ekka.css" />
