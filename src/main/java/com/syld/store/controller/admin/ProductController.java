@@ -2,7 +2,8 @@ package com.syld.store.controller.admin;
 
 import com.syld.store.controller.BaseController;
 import com.syld.store.dto.ProductDto;
-import com.syld.store.interfaces.controllers.ICrudController;
+import com.syld.store.services.user.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
