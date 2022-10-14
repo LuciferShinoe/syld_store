@@ -22,7 +22,6 @@ public class HandleFailureAuthentication implements AuthenticationFailureHandler
         } else {
             errorCode = exception.getMessage();
         }
-//        response.addHeader("error", errorCode);
-        response.sendRedirect("/login?error=" + errorCode);
+        response.sendRedirect("/auth/login?error=" + errorCode);
     }
 }

@@ -60,7 +60,6 @@
 <!-- //Main wrapper -->
 
 <!-- JS Files -->
-<script src="${pageContext.request.contextPath}/assets/js/vendor/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/vendor/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/plugins.js"></script>
