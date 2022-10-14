@@ -72,6 +72,7 @@
             })
         }
     }
+
     const sendBtn = document.getElementById("sendBtn").onclick = (e)=>{
         if (document.getElementById("email").value === ""){
             document.getElementById("email_err").textContent = "Please fill this field."
