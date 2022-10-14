@@ -636,7 +636,6 @@
 <%--top nav--%>
 <jsp:include page="../pages/${web_content}.jsp"/>
 </body>
-=======
 <div class="wrapper">
 
     <!-- LEFT MAIN SIDEBAR -->
@@ -893,7 +892,6 @@
     </div>
 
 </body>
-
 
 <footer class="footer mt-auto">
     <%@include file="admin_footer.jsp"%>
