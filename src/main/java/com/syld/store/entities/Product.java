@@ -39,7 +39,6 @@ public class Product {
     private String slug;
 
 
-
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
@@ -47,12 +46,20 @@ public class Product {
     @ManyToOne
     Brand brand;
 
-    @OneToMany(mappedBy = "product")
+    @ManyToMany
+    @JoinTable(
+            name = "product_color",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "color_id")
+    )
     List<Color> colors = new ArrayList<>();
 
-
-
-    @OneToMany(mappedBy = "product")
+    @ManyToMany
+            @JoinTable(
+                    name = "product_size",
+                    joinColumns = @JoinColumn(name = "product_id"),
+                    inverseJoinColumns = @JoinColumn(name = "size_id")
+            )
     List<com.syld.store.entities.Size> sizes = new ArrayList<>();
     @ManyToOne
     Category category;
