@@ -6,6 +6,7 @@ import com.syld.store.services.brand.BrandService;
 import com.syld.store.ultis.SlugGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,11 +26,11 @@ public class BrandController extends BaseController {
     @GetMapping
     public String GetByPage(Model model){
         try {
-            model.addAttribute("brands", brandService.getClass());
+            model.addAttribute("brands", brandService.getAll());
         }catch (Exception e){
             log.info(e.getMessage());
         }
-        return view(model, "List Brand", "brand/list", this.admin_layout );
+        return view(model, "List Brand", "brands/list", this.admin_layout );
 
     }
 
@@ -51,26 +52,24 @@ public class BrandController extends BaseController {
 
     @GetMapping(path = "/create")
     public String Save(Model model) {
-        try{
-            model.addAttribute("brand", brandService.getClass());
-
-        }catch (Exception e){
+        try {
+            model.addAttribute("brands", new BrandDto());
+        }catch (Exception e) {
             log.info(e.getMessage());
         }
-        model.addAttribute("brand", new BrandDto());
-        return view(model, "Create_Brands", "brands/add",this.admin_layout);
+        return view(model, "Create_Brands", "brand/add",this.admin_layout);
     }
     @PostMapping(path = "/create")
-    public String Save(@Valid @ModelAttribute("brand") BrandDto brandDto, BindingResult bindingResult, Model model){
+    public String Save(@Valid @ModelAttribute("brands") @NotNull BrandDto brandDto, BindingResult bindingResult, Model model){
 
         BrandDto brandDto_ = brandService.getByName(brandDto.getBrand_name());
         if(brandDto_ != null){
             bindingResult.rejectValue("brand_name", "", "Brand name has taken !");
         }
-        BrandDto brandDto__ = brandService.getBySlugName(SlugGenerator.toSlug(brandDto.getBrand_lug()));
+        BrandDto brandDto__ = brandService.getBySlugName(SlugGenerator.toSlug(brandDto.getBrand_slug()));
         if(brandDto__ != null) {
             bindingResult.rejectValue("brand_slug", "", "Brand slug has taken !");
-            return view(model, "Create_Brand", "brands/add", this.admin_layout);
+            return view(model, "Create_Brand", "brand/add", this.admin_layout);
         }
         try{
             brandService.save(brandDto);

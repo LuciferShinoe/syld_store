@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,6 +38,15 @@ public class BrandServiceIpm implements BrandService{
     }
 
     @Override
+    public BrandDto getByBrand_desc(String desc){
+        Brand brand = brandRepository.findByBrand_desc(desc);
+        if(brand != null){
+            return modelMapper.map(brand, BrandDto.class);
+        }
+        return null;
+    }
+
+    @Override
     public BrandDto getByName(String name) {
         Brand brand = brandRepository.findByBrand_name(name);
         if(brand != null){
@@ -43,23 +56,23 @@ public class BrandServiceIpm implements BrandService{
     }
 
     @Override
+    public Page<BrandDto> getByPage(int page, int limit) throws Exception {
+        try {
+            Pageable pageable = PageRequest.of(page - 1, limit);
+            Page<Brand> brandDtos = brandRepository.findAll(pageable);
+            return new PageImpl<>(brandDtos.getContent().stream().map(brand -> modelMapper.map(brand, BrandDto.class)).toList());
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            throw e;
+        }
+    }
+    @Override
     public BrandDto getBySlugName(String slug) {
         Optional<Brand> brand = brandRepository.findBySlug(slug);
         if(brand.isPresent()){
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
-    }
-
-    @Override
-    public BrandDto getListBrand() throws Exception {
-        try{
-            List<Brand> list = brandRepository.findAll();
-            return (BrandDto) list.stream().map(brand -> modelMapper.map(brand, BrandDto.class)).toList();
-        }catch (Exception e){
-            log.info(e.getMessage());
-            throw e;
-        }
     }
 
     final String brand_logo = "/asset/admin/img/products/vender-upload-preview.jpg";
@@ -76,7 +89,7 @@ public class BrandServiceIpm implements BrandService{
             }else {
                 brand.setBrand_logo(brand_logo);
             }
-            brand.setBrand_slug(SlugGenerator.toSlug(entity.getBrand_lug()));
+            brand.setBrand_slug(SlugGenerator.toSlug(entity.getBrand_slug()));
             brandRepository.save(brand);
         }catch (Exception e) {
             log.info(e.getMessage());

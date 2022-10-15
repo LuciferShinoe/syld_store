@@ -15,7 +15,7 @@ public interface BrandRepository extends JpaRepository<Brand, String>  {
     @Query(value = "select * from  brand where brand_desc = ?1", nativeQuery = true)
     Brand findByBrand_desc(String desc);
 
-    @Query(value = "select * from brand where slug = ?1", nativeQuery = true)
+    @Query(value = "select * from brand where brand_slug = ?1", nativeQuery = true)
     Optional<Brand> findBySlug(String slug);
 
 
