@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import java.util.Objects;
 
 public class BaseController {
+    public String admin_layout = "/admin/layout/admin_layout";
 
     public String prefix = "index";
 

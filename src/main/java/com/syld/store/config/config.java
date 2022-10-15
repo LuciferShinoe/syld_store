@@ -31,7 +31,6 @@ public class config {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeHttpRequests()
-                .antMatchers( "/admin/**").authenticated()
                 .anyRequest().permitAll();
 
         http.formLogin(
