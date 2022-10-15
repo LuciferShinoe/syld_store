@@ -3,6 +3,7 @@ package com.syld.store.controller.admin;
 import com.syld.store.controller.BaseController;
 import com.syld.store.dto.CategoryDto;
 import com.syld.store.services.category.CategoryService;
+import com.syld.store.ultis.SlugGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/categories")
-public class CategoryController extends BaseController  {
+public class CategoryController extends BaseController {
     private final CategoryService categoryService;
 
     @GetMapping
@@ -33,12 +34,12 @@ public class CategoryController extends BaseController  {
     }
 
     @GetMapping(path = "/remove/{id}")
-    public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id){
+    public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id) {
         try {
             categoryService.remove(id);
-            redirectAttributes.addFlashAttribute("message","Success!");
-        }catch (Exception e){
-            redirectAttributes.addFlashAttribute("message","Falied!");
+            redirectAttributes.addFlashAttribute("message", "Success!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Falied!");
         }
         return "redirect:/admin/categories/";
     }
@@ -47,20 +48,21 @@ public class CategoryController extends BaseController  {
     public String Update(Model model, @PathVariable String slug) {
         try {
             model.addAttribute("parent_categories", categoryService.getListCategory());
-            model.addAttribute("category_edit",categoryService.getBySlugName(slug));
+            model.addAttribute("category_edit", categoryService.getBySlugName(slug));
         } catch (Exception e) {
             log.info(e.getMessage());
         }
         return view(model, "Edit - Category", "category/edit", this.admin_layout);
     }
+
     @PostMapping("/update")
-    public String Update(@Valid @ModelAttribute("category_edit") CategoryDto categoryDto,BindingResult bindingResult,Model model){
-        if (bindingResult.hasErrors()){
-            return view(model,"Edit - Category","category/edit",this.admin_layout);
+    public String Update(@Valid @ModelAttribute("category_edit") CategoryDto categoryDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return view(model, "Edit - Category", "category/edit", this.admin_layout);
         }
         try {
             categoryService.update(categoryDto);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return "redirect:/admin/categories/";
@@ -80,6 +82,14 @@ public class CategoryController extends BaseController  {
 
     @PostMapping(path = "/create")
     public String Save(@Valid @ModelAttribute("category") CategoryDto categoryDto, BindingResult bindingResult, Model model) {
+        CategoryDto categoryDto_ = categoryService.getByName(categoryDto.getCategory_name());
+        if (categoryDto_ != null) {
+            bindingResult.rejectValue("category_name","", "Category name has taken!");
+        }
+        CategoryDto categoryDto__ = categoryService.getBySlugName(SlugGenerator.toSlug(categoryDto.getCategory_slug()));
+        if (categoryDto__ != null) {
+            bindingResult.rejectValue("category_slug", "","Category slug has taken!");
+        }
         if (bindingResult.hasErrors()) {
             return view(model, "Create - Category", "category/add", this.admin_layout);
         }

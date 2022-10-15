@@ -1,5 +1,6 @@
 <%@ taglib prefix="spForm" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spFOrm" uri="http://www.springframework.org/tags/form" %>
 <div class="ec-content-wrapper">
     <div class="content">
         <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
@@ -55,11 +56,13 @@
                                                               class="form-label">Category name</spForm:label>
                                                 <spForm:input path="category_name" type="text"
                                                               class="form-control slug-title" required="true"/>
+                                                <spFOrm:errors path="category_name" cssStyle="color: red;font-size: 12px"/>
                                                 <br/>
                                                 <spForm:label path="category_slug"
                                                               class="form-label">Category Slug</spForm:label>
                                                 <spForm:input path="category_slug" type="text"
                                                               class="form-control slug-title" required="true"/>
+                                                <spFOrm:errors path="category_slug" cssStyle="color: red;font-size: 12px"/>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Select Parent Categories</label>
