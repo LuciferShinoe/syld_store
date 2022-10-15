@@ -35,11 +35,7 @@ public class CategoryController extends BaseController {
 
     @GetMapping(path = "/{slug}")
     public String CategoryDetail(@PathVariable String slug){
-        try {
-
-        }catch (Exception e){
-
-        }
+        return null;
     }
 
     @GetMapping(path = "/remove/{id}")
