@@ -139,4 +139,13 @@ public class CategoryServiceIpm implements CategoryService {
         return null;
     }
 
+    @Override
+    public CategoryDto getParent(String parent_id) {
+        try {
+            return modelMapper.map(categoryRepository.findParentCategory(parent_id,"parent"),CategoryDto.class);
+        }catch (Exception e){
+            log.info(e.getMessage());
+        }
+        return null;
+    }
 }

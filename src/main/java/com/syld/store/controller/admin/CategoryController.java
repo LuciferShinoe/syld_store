@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -36,7 +37,12 @@ public class CategoryController extends BaseController {
     @GetMapping(path = "/{slug}")
     public String CategoryDetail(Model model, @PathVariable String slug) {
         try {
-            model.addAttribute("category_detail", categoryService.getBySlugName(slug));
+            CategoryDto categoryDto = categoryService.getBySlugName(slug);
+            if (!Objects.equals(categoryDto.getParent_id(), "parent")){
+
+                model.addAttribute("parent",categoryService.getParent(categoryDto.getParent_id()));
+            }
+            model.addAttribute("category_detail", categoryDto);
             return view(model, "Category - Detail", "category/detail", this.admin_layout);
         } catch (Exception e) {
             log.info(e.getMessage());

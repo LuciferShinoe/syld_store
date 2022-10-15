@@ -21,6 +21,10 @@ public interface CategoryRepository extends JpaRepository<Category, String> {
     @Query(value = "select * from  category where parent_id=?1", nativeQuery = true)
     List<Category> findParent(String parent_id);
 
+    @Query(value = "select * from  category where id=?1 and parent_id=?2",nativeQuery = true)
+    Category findParentCategory(String parent_id,String parent_mark);
+
+
     @Query(value = "select * from category where category_slug=?1", nativeQuery = true)
     Optional<Category> findBySlug(String slug);
 }
