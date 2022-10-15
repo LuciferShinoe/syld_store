@@ -16,7 +16,7 @@ public class Color {
     @javax.persistence.Id
     private String Id;
 
-    private String color_name;
+    private String color_code;
 
     @ManyToOne
     Product product;

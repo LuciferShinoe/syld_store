@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/admin/products")
 public class ProductController extends BaseController {
 
-    @GetMapping(path = "/product/create")
+    @GetMapping(path = "/create")
     public String create(Model model, @RequestParam(required = false)String error){
         model.addAttribute("product_create",new ProductDto());
-        return view(model, "Add Product", "product/create","layout/admin_layout");
+        return view(model, "Add Product", "product/add",this.admin_layout);
     }
 
     public ResponseEntity<?> save_entity(ProductDto entity) {

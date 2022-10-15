@@ -19,6 +19,7 @@ public class Brand {
     @Column(unique = true)
     private String brand_name;
 
+    private String slug;
     @Column
     private String brand_desc;
 

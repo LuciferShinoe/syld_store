@@ -3,6 +3,7 @@ package com.syld.store.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -12,12 +13,18 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@SQLDelete(sql = "UPDATE category SET state = true WHERE id=?")
+@SQLDelete(sql = "UPDATE category SET state = false WHERE id=?")
 public class Category {
 
     @javax.persistence.Id
     private String Id;
 
+    @Nullable
+    private String category_thumbnail;
+
+    private String parent_id;
+
+    private String category_slug;
 
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
@@ -32,5 +39,6 @@ public class Category {
     public void addProductToCategory(Product product) {
         this.productList.add(product);
     }
+
 
 }
