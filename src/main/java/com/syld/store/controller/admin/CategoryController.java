@@ -34,8 +34,14 @@ public class CategoryController extends BaseController {
     }
 
     @GetMapping(path = "/{slug}")
-    public String CategoryDetail(@PathVariable String slug){
-        return null;
+    public String CategoryDetail(Model model, @PathVariable String slug) {
+        try {
+            model.addAttribute("category_detail", categoryService.getBySlugName(slug));
+            return view(model, "Category - Detail", "category/detail", this.admin_layout);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return "redirect:/admin/categpries/";
     }
 
     @GetMapping(path = "/remove/{id}")
@@ -89,11 +95,11 @@ public class CategoryController extends BaseController {
     public String Save(@Valid @ModelAttribute("category") CategoryDto categoryDto, BindingResult bindingResult, Model model) {
         CategoryDto categoryDto_ = categoryService.getByName(categoryDto.getCategory_name());
         if (categoryDto_ != null) {
-            bindingResult.rejectValue("category_name","", "Category name has taken!");
+            bindingResult.rejectValue("category_name", "", "Category name has taken!");
         }
         CategoryDto categoryDto__ = categoryService.getBySlugName(SlugGenerator.toSlug(categoryDto.getCategory_slug()));
         if (categoryDto__ != null) {
-            bindingResult.rejectValue("category_slug", "","Category slug has taken!");
+            bindingResult.rejectValue("category_slug", "", "Category slug has taken!");
         }
         if (bindingResult.hasErrors()) {
             return view(model, "Create - Category", "category/add", this.admin_layout);
