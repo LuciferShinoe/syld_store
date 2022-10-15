@@ -5,8 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -17,9 +20,6 @@ public class Color {
     private String Id;
 
     private String color_code;
-
-    @ManyToOne
-    Product product;
 
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());

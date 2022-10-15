@@ -33,6 +33,15 @@ public class CategoryController extends BaseController {
         return view(model, "List Category", "category/list", this.admin_layout);
     }
 
+    @GetMapping(path = "/{slug}")
+    public String CategoryDetail(@PathVariable String slug){
+        try {
+
+        }catch (Exception e){
+
+        }
+    }
+
     @GetMapping(path = "/remove/{id}")
     public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id) {
         try {
