@@ -17,7 +17,7 @@ public class Uploader {
 
     public String upload(MultipartFile file, String identity) {
         try {
-            this.upload_dir += identity.toLowerCase();
+            String uploadPath = this.upload_dir + identity.toLowerCase();
 //            get file type
             String extension = "";
 
@@ -27,21 +27,22 @@ public class Uploader {
             }
 //            end
             String filename = UUID.randomUUID().toString() + "." + extension;
-            Path filenameAndPath = Paths.get(upload_dir, filename);
-            if (!Files.exists(Paths.get(this.upload_dir))) {
-                Files.createDirectories(Paths.get(this.upload_dir));
+            Path filenameAndPath = Paths.get(uploadPath, filename);
+            Path path = Paths.get(uploadPath);
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
             }
             Files.write(filenameAndPath, file.getBytes());
-            return "/assets/uploads/"+identity.toLowerCase()+"/" + filename;
+            return "/assets/uploads/" + identity.toLowerCase() + "/" + filename;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void remove(String filePath){
-        Path path = Paths.get(this.upload_dir.substring(0,this.upload_dir.indexOf("/assets")) + filePath);
-        if (Files.exists(path)){
+    public void remove(String filePath) {
+        Path path = Paths.get(this.upload_dir.substring(0, this.upload_dir.indexOf("/assets")) + filePath);
+        if (Files.exists(path)) {
             File file = new File(filePath);
             file.delete();
         }
