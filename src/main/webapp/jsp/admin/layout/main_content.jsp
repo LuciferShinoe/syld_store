@@ -1,0 +1,1 @@
+<jsp:include page="../pages/${web_content}.jsp"/>
