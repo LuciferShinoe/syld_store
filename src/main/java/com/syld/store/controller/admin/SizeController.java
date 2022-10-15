@@ -26,6 +26,15 @@ public class SizeController extends BaseController {
 
     private final SizeService sizeService;
 
+    @GetMapping(path = "/{id}")
+    public String SizeDetail(Model model, @PathVariable String id){
+        try {
+            model.addAttribute("size_detail", sizeService.getById(id));
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return view(model, "List - Size", "size/list", this.admin_layout);
+    }
     @GetMapping
     public String GetAll(Model model) {
         try {

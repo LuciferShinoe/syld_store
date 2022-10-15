@@ -2,6 +2,8 @@ package com.syld.store.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE brand SET = false WHERE id = ?")
 public class Brand {
 
     @javax.persistence.Id
@@ -19,13 +22,16 @@ public class Brand {
     @Column(unique = true)
     private String brand_name;
 
-    private String slug;
+    private String brand_slug;
     @Column
     private String brand_desc;
 
     private boolean state = Boolean.TRUE;
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
+
+    @Nullable
+    private String brand_logo;
 
     @OneToMany(mappedBy = "brand")
     List<Product> productList = new ArrayList<>();

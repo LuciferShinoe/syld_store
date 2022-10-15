@@ -12,7 +12,7 @@
     <div class="content">
         <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
             <div>
-                <h1>Product</h1>
+                <h1>Category</h1>
                 <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
                     <span><i class="mdi mdi-chevron-right"></i></span>Category</p>
             </div>
@@ -49,7 +49,7 @@
                                         <td>
                                             <div class="btn-group mb-1">
                                                 <button type="button"
-                                                        class="btn btn-outline-success">Info
+                                                        class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/admin/categories/${category.category_slug}">Info</a>
                                                 </button>
                                                 <button type="button"
                                                         class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
