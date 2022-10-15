@@ -49,7 +49,7 @@
                                         <td>
                                             <div class="btn-group mb-1">
                                                 <button type="button"
-                                                        class="btn btn-outline-success">Info
+                                                        class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/admin/categories/${category.category_slug}">Info</a>
                                                 </button>
                                                 <button type="button"
                                                         class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"

@@ -15,4 +15,5 @@ public interface CategoryService extends ICrudService<CategoryDto,String> {
     CategoryDto getBySlugName(String slug);
     CategoryDto getByName(String name);
 
+    CategoryDto getParent(String parent_id);
 }
