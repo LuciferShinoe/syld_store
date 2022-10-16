@@ -30,7 +30,7 @@
                                    style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th>Product</th>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Slug</th>
                                     <th>State</th>
