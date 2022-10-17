@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductDto {
     String Id;
 
-    @Min(1)
+    @Size(min = 1)
     private String product_name;
 
     @Size(max = 5000)
@@ -30,13 +30,14 @@ public class ProductDto {
     @Min(1)
     private int product_quantity;
 
-    private String product_slug;
+    @Size(min = 1)
+    private String slug;
     private int sale_off = 0;
 
 //upload thumbnails
 
     List<MultipartFile> files = new ArrayList<>();
-//    tags
+    //    tags
     private String group_tag;
 
     private String brand_id;

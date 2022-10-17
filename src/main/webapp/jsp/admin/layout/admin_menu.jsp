@@ -101,11 +101,12 @@
                 </li>
 
                 <%--Colors--%>
-                <a class="sidenav-item-link" href="admin/colors">
-                    <i class="mdi mdi-dns-outline"></i>
-                    <span class="nav-text">Colors</span> <b class="caret"></b>
-                </a>
-
+                <li class="has-sub">
+                        <a class="sidenav-item-link" href="admin/colors">
+                            <i class="mdi mdi-dns-outline"></i>
+                            <span class="nav-text">Colors</span> <b class="caret"></b>
+                        </a>
+                </li>
                 <!-- Products -->
                 <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)">

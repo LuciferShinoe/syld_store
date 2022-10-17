@@ -12,13 +12,13 @@
     <div class="content">
         <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
             <div>
-                <h1>Product</h1>
+                <h1>Size</h1>
                 <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
-                    <span><i class="mdi mdi-chevron-right"></i></span>Category</p>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Size</p>
             </div>
             <div>
                 <a href="${pageContext.request.contextPath}/admin/sizes/create" class="btn btn-primary"> Add
-                    Category</a>
+                    Size</a>
             </div>
         </div>
         <div class="row">

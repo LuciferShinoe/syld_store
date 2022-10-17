@@ -28,7 +28,6 @@ public class ColorServiceIpm implements ColorService {
         try{
             Color color = this.modelMapper.map(entity, Color.class);
             color.setId(UUID.randomUUID().toString());
-
             colorRepository.save(color);
         }catch (Exception e){
                 log.info(e.getMessage());

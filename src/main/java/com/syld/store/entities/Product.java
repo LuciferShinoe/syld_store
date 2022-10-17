@@ -1,5 +1,6 @@
 package com.syld.store.entities;
 
+import com.syld.store.dto.ColorDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -10,7 +11,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -49,29 +52,40 @@ public class Product {
     @ManyToOne
     Brand brand;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "product_color",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "color_id")
     )
-    List<Color> colors = new ArrayList<>();
+    Set<Color> colors = new HashSet<>();
 
-    @ManyToMany
-            @JoinTable(
-                    name = "product_size",
-                    joinColumns = @JoinColumn(name = "product_id"),
-                    inverseJoinColumns = @JoinColumn(name = "size_id")
-            )
-    List<com.syld.store.entities.Size> sizes = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "product_size",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id")
+    )
+    Set<com.syld.store.entities.Size> sizes = new HashSet<>();
     @ManyToOne
     Category category;
 
-    @OneToMany(mappedBy = "product")
-    List<ProductCart> productCartList = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Set<ProductImage> thumbnails = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products")
-    List<Tag> tags = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    Set<ProductCart> productCartList = new HashSet<>();
+
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Set<Tag> tags = new HashSet<>();
+
+    public void addImage(ProductImage productImage) {
+        this.thumbnails.add(productImage);
+    }
+
+    public void addColors(Color color) {
+        this.colors.add(color);
+    }
 
     public void addTagToProduct(Tag tag) {
         this.tags.add(tag);

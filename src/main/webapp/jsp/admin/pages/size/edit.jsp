@@ -5,7 +5,7 @@
     <div class="content">
         <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
             <div>
-                <h1>Add Size</h1>
+                <h1>Edit Size</h1>
                 <p class="breadcrumbs"><span><a href="${pageContext.request.contextPath}/home">Home</a></span>
                     <span><i class="mdi mdi-chevron-right"></i></span>Size</p>
             </div>

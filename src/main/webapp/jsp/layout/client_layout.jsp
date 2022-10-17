@@ -127,7 +127,7 @@
                             <li class="drop"><a href="#">Shoes</a>
                                 <div class="megamenu dropdown">
                                     <ul class="item item01">
-                                        <li><a href="about.html">About Page</a></li>
+                                        <li><a href="about.html"></a></li>
                                         <li class="label2"><a href="portfolio.html">Portfolio</a>
                                             <ul>
                                                 <li><a href="portfolio.html">Portfolio</a></li>
@@ -146,7 +146,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="drop"><a href="/blog">Blog</a>
+                            <li class="drop"><a href="/blog">Fashion Accessories</a>
                                 <div class="megamenu dropdown">
                                     <ul class="item item01">
                                         <li><a href="blog.html">Blog Page</a></li>
@@ -156,6 +156,7 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li><a href="ravenueRating">Fashion Accessories</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>

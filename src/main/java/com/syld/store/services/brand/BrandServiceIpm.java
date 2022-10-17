@@ -25,7 +25,7 @@ import java.util.UUID;
 @Transactional
 @Slf4j
 @RequiredArgsConstructor
-public class BrandServiceIpm implements BrandService{
+public class BrandServiceIpm implements BrandService {
 
     private final BrandRepository brandRepository;
     final Uploader uploader = new Uploader();
@@ -36,17 +36,19 @@ public class BrandServiceIpm implements BrandService{
     public List<BrandDto> getAll() {
         return brandRepository.findAll().stream().map(brand -> modelMapper.map(brand, BrandDto.class)).toList();
     }
+
     final String brand_logo = "/asset/admin/img/products/vender-upload-preview.jpg";
 
     // gọi mô tả của brand
     @Override
-    public BrandDto getByBrand_desc(String desc){
+    public BrandDto getByBrand_desc(String desc) {
         Brand brand = brandRepository.findByBrand_desc(desc);
-        if(brand != null){
+        if (brand != null) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
     }
+
     @Override
     public Page<BrandDto> getByPage(int page, int limit) throws Exception {
         try {
@@ -58,21 +60,21 @@ public class BrandServiceIpm implements BrandService{
             throw e;
         }
     }
+
     @Override
     public BrandDto getById(String id) {
         Optional<Brand> brand = brandRepository.findById(id);
-
-        if(brand != null) {
+        if (brand.isPresent()) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
     }
 
-// gọi tên của brand
+    // gọi tên của brand
     @Override
     public BrandDto getByName(String name) {
         Brand brand = brandRepository.findByBrand_name(name);
-        if(brand != null){
+        if (brand != null) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
@@ -80,8 +82,8 @@ public class BrandServiceIpm implements BrandService{
 
     @Override
     public BrandDto getByNameNotSame(String name, String id) {
-        Optional<Brand> brand = brandRepository.getByNameNotSame(name,id);
-        if(brand.isPresent()){
+        Optional<Brand> brand = brandRepository.getByNameNotSame(name, id);
+        if (brand.isPresent()) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
@@ -91,7 +93,7 @@ public class BrandServiceIpm implements BrandService{
     @Override
     public BrandDto getBySlugName(String slug) {
         Optional<Brand> brand = brandRepository.findBySlug(slug);
-        if(brand.isPresent()){
+        if (brand.isPresent()) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
@@ -99,8 +101,8 @@ public class BrandServiceIpm implements BrandService{
 
     @Override
     public BrandDto getBySlugNameNotSame(String slug, String id) {
-        Optional<Brand> brand = brandRepository.getBySlugNotSame(slug,id);
-        if(brand.isPresent()){
+        Optional<Brand> brand = brandRepository.getBySlugNotSame(slug, id);
+        if (brand.isPresent()) {
             return modelMapper.map(brand, BrandDto.class);
         }
         return null;
@@ -117,46 +119,46 @@ public class BrandServiceIpm implements BrandService{
     @Override
     public void save(BrandDto entity) throws Exception {
 
-        try{
+        try {
             String filePath = uploader.upload(entity.getFile(), entity.getBrand_name());
 
             Brand brand = this.modelMapper.map(entity, Brand.class);
             brand.setId(UUID.randomUUID().toString());
-            if(filePath != null) {
+            if (filePath != null) {
                 brand.setBrand_logo(filePath);
-            }else {
+            } else {
                 brand.setBrand_logo(brand_logo);
             }
             brand.setBrand_slug(SlugGenerator.toSlug(entity.getBrand_slug()));
             brandRepository.save(brand);
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
             throw e;
         }
     }
 
-// phần sửa thông tin của brand
+    // phần sửa thông tin của brand
     @Override
     public void update(BrandDto entity) throws Exception {
 
-        try{
+        try {
             Brand brand = brandRepository.findById(entity.getId()).orElse(null);
-            if(brand != null) {
+            if (brand != null) {
                 String old_path = brand.getBrand_logo();
                 BeanUtils.copyProperties(entity, brand);
-                if(!Objects.equals(entity.getFile().getOriginalFilename(), "")) {
-                String path = uploader.upload(entity.getFile(), entity.getBrand_name());
-                uploader.remove(brand.getBrand_logo());
-                brand.setBrand_logo(path);
+                if (!Objects.equals(entity.getFile().getOriginalFilename(), "")) {
+                    String path = uploader.upload(entity.getFile(), entity.getBrand_name());
+                    uploader.remove(brand.getBrand_logo());
+                    brand.setBrand_logo(path);
+                } else {
+                    brand.setBrand_logo(old_path);
+                }
+                brandRepository.save(brand);
             } else {
-                brand.setBrand_logo(old_path);
-            }
-            brandRepository.save(brand);
-        } else {
                 throw new Exception("no brand found !");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
 
@@ -167,14 +169,14 @@ public class BrandServiceIpm implements BrandService{
     @Override
     public void remove(String Id) throws Exception {
 
-        try{
+        try {
             Brand brand = brandRepository.findById(Id).orElse(null);
-            if( brand != null) {
+            if (brand != null) {
                 brandRepository.delete(brand);
-            }else {
+            } else {
                 throw new Exception("No Brand Found");
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
             throw e;
         }

@@ -20,9 +20,6 @@ public class ProductImage {
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
 
-    @ManyToOne
-    private Product product;
-
     @NotNull
     private String path;
 }

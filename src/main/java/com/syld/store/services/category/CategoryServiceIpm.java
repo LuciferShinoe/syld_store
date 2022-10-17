@@ -182,4 +182,10 @@ public class CategoryServiceIpm implements CategoryService {
         }
         return categoryDtoList;
     }
+
+    @Override
+    public Category getById(String category_id) {
+        Optional<Category> category = categoryRepository.findById(category_id);
+        return category.orElse(null);
+    }
 }
