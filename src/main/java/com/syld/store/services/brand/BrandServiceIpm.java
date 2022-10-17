@@ -78,10 +78,28 @@ public class BrandServiceIpm implements BrandService{
         return null;
     }
 
+    @Override
+    public BrandDto getByNameNotSame(String name, String id) {
+        Optional<Brand> brand = brandRepository.getByNameNotSame(name,id);
+        if(brand.isPresent()){
+            return modelMapper.map(brand, BrandDto.class);
+        }
+        return null;
+    }
+
     // phần chuyển đổi chữ hoa và dạng slug k dấu
     @Override
     public BrandDto getBySlugName(String slug) {
         Optional<Brand> brand = brandRepository.findBySlug(slug);
+        if(brand.isPresent()){
+            return modelMapper.map(brand, BrandDto.class);
+        }
+        return null;
+    }
+
+    @Override
+    public BrandDto getBySlugNameNotSame(String slug, String id) {
+        Optional<Brand> brand = brandRepository.getBySlugNotSame(slug,id);
         if(brand.isPresent()){
             return modelMapper.map(brand, BrandDto.class);
         }

@@ -69,7 +69,7 @@
                                                 <spForm:select path="parent_id" class="form-select">
                                                     <spForm:option value="parent"><h6>Parent</h6></spForm:option>
                                                     <c:forEach var="category" items="${parent_categories}">
-                                                        <spForm:option value="category.id"><h6>${category.category_name}</h6></spForm:option>
+                                                        <spForm:option value="${category.id}"><h6>${category.category_name}</h6></spForm:option>
                                                     </c:forEach>
                                                 </spForm:select>
                                             </div>

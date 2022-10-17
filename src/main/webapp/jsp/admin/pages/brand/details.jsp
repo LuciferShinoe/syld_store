@@ -40,27 +40,22 @@
                             <div class="col-xl-5 col-lg-6">
                                 <div class="row product-overview">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label">Category name</label>
+                                        <label class="form-label">Brand name</label>
                                         <input class="form-control slug-title"
-                                               value=" ${category_detail.category_name}" readonly>
+                                               value=" ${brand_detail.brand_name}" readonly>
 
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label">Category slug</label>
+                                        <label class="form-label">Brand slug</label>
                                         <input class="form-control slug-title"
-                                               value=" ${category_detail.category_slug}" readonly>
+                                               value=" ${brand_detail.category_slug}" readonly>
 
                                     </div>
-                                    <div class="col-12 col-md-6 mt-3">
-                                        <label class="form-label">Parent</label>
-                                        <c:if test="${category_detail.parent_id == 'parent'}">
-                                            <input class="form-control slug-title"
-                                                   value="${category_detail.category_name}" readonly>
-                                        </c:if>
-                                        <c:if test="${category_detail.parent_id != 'parent'}">
-                                            <input class="form-control slug-title"
-                                                   value="${parent.category_name}" readonly>
-                                        </c:if>
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label">Brand Descrition</label>
+                                        <textarea class="form-control slug-title"
+                                               value=" ${brand_detail.category_slug}" readonly>
+
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +64,7 @@
                 </div>
             </div>
         </div>
+
     </div> <!-- End Content -->
 </div>
 <!-- End Content Wrapper -->

@@ -1,5 +1,6 @@
 package com.syld.store.dto;
 
+import com.syld.store.entities.Category;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,4 +15,6 @@ public class CategoryDto {
     private boolean state = Boolean.TRUE;
     private String parent_id = "parent";
     MultipartFile file;
+
+    private Category parent;
 }

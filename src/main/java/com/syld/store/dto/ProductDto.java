@@ -1,5 +1,6 @@
 package com.syld.store.dto;
 
+import com.syld.store.entities.Color;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ProductDto {
     String Id;
 
+    @Min(1)
     private String product_name;
 
     @Size(max = 5000)
@@ -28,16 +30,20 @@ public class ProductDto {
     @Min(1)
     private int product_quantity;
 
-    private  String size;
-
+    private String product_slug;
     private int sale_off = 0;
 
-    List<MultipartFile> files = new ArrayList<>();
+//upload thumbnails
 
+    List<MultipartFile> files = new ArrayList<>();
+//    tags
     private String group_tag;
 
     private String brand_id;
 
-    private String category_id;
+    List<String> colors = new ArrayList<>();
 
+    private List<String> sizes = new ArrayList<>();
+
+    private String category_id;
 }

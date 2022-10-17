@@ -24,23 +24,21 @@ public class BrandController extends BaseController {
     private final BrandService brandService;
 
     @GetMapping
-    public String GetByPage(Model model){
+    public String GetByPage(Model model) {
         try {
             model.addAttribute("brands", brandService.getAll());
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
-        return view(model, "List Brand", "brand/list", this.admin_layout );
+        return view(model, "List Brand", "brand/list", this.admin_layout);
     }
 
     @GetMapping(path = "/{slug}")
-    public String BrandDetail(Model model, @PathVariable String slug, String id){
+    public String BrandDetail(Model model, @PathVariable String slug) {
         try {
-            BrandDto brandDto = brandService.getBySlugName(slug);
-            model.addAttribute("brands", brandDto);
-            model.addAttribute("brands", brandService.getById(id));
-            return view(model, "Brand - list", "brand/detail",this.admin_layout);
-        }catch (Exception e){
+            model.addAttribute("brand   _detail", brandService.getBySlugName(slug));
+            return view(model, "Brand - list", "brand/detail", this.admin_layout);
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return "redirect:/admin/brands/";
@@ -50,62 +48,74 @@ public class BrandController extends BaseController {
     public String Save(Model model) {
         try {
             model.addAttribute("brands", new BrandDto());
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
-        return view(model, "Create_Brands", "brand/add",this.admin_layout);
+        return view(model, "Create_Brands", "brand/add", this.admin_layout);
     }
 
     @PostMapping(path = "/create")
-    public String Save(@Valid @ModelAttribute("brands") @NotNull BrandDto brandDto, BindingResult bindingResult, Model model){
+    public String Save(@Valid @ModelAttribute("brands") @NotNull BrandDto brandDto, BindingResult bindingResult, Model model) {
 
         BrandDto brandDto_ = brandService.getByName(brandDto.getBrand_name());
-        if(brandDto_ != null){
+        if (brandDto_ != null) {
             bindingResult.rejectValue("brand_name", "", "Brand name has taken !");
         }
         BrandDto brandDto__ = brandService.getBySlugName(SlugGenerator.toSlug(brandDto.getBrand_slug()));
-        if(brandDto__ != null) {
+        if (brandDto__ != null) {
             bindingResult.rejectValue("brand_slug", "", "Brand slug has taken !");
+        }
+        if (bindingResult.hasErrors()) {
             return view(model, "Create_Brand", "brand/add", this.admin_layout);
         }
-        try{
+        try {
             brandService.save(brandDto);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return "redirect:/admin/brands?page=1&limit=6";
     }
 
-    @PostMapping(path = "/update/{slug}")
+    @GetMapping(path = "/update/{slug}")
     public String Update(Model model, @PathVariable String slug) {
-        try{
+        try {
             model.addAttribute("brand_edit", brandService.getBySlugName(slug));
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return view(model, "Edit - Brand", "brand/edit", this.admin_layout);
     }
 
     @PostMapping(path = "/update")
-    public String Update(@Valid @ModelAttribute("brand_edit") BrandDto brandDto, BindingResult bindingResult, Model model){
-//        chua bat loi trung slug trung ten
-        if(bindingResult.hasErrors()) {
-            return  view(model, "Edit - Brand", "brand/edit", this.admin_layout);
+    public String Update(@Valid @ModelAttribute("brand_edit") BrandDto brandDto, BindingResult bindingResult, Model model) {
+
+        BrandDto brandDto_ = brandService.getByNameNotSame(brandDto.getBrand_name(),brandDto.getId());
+        if (brandDto_ != null) {
+            bindingResult.rejectValue("brand_name", "", "Brand name has taken !");
         }
-        try{
+        BrandDto brandDto__ = brandService.getBySlugNameNotSame(SlugGenerator.toSlug(brandDto.getBrand_slug()),brandDto.getId());
+        if (brandDto__ != null) {
+            bindingResult.rejectValue("brand_slug", "", "Brand slug has taken !");
+        }
+
+//        chua bat loi trung slug trung ten
+        if (bindingResult.hasErrors()) {
+            return view(model, "Edit - Brand", "brand/edit", this.admin_layout);
+        }
+        try {
             brandService.update(brandDto);
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return "redirect:/admin/brands/";
     }
 
     @GetMapping(path = "remove/{id}")
-    public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id){
+    public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id) {
         try {
             brandService.remove(id);
             redirectAttributes.addFlashAttribute("message", "Success");
-        }catch (Exception e) {
+        } catch (Exception e) {
             redirectAttributes.addAttribute("message", "Falied");
         }
         return "redirect:/admin/brands";

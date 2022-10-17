@@ -85,20 +85,26 @@
                         <span class="nav-text">Categories</span> <b class="caret"></b>
                     </a>
                     <div class="collapse">
-                        <ul class="sub-menu" id="categorys" data-parent="#sidebar-menu">
+                        <ul class="sub-menu" id="category" data-parent="#sidebar-menu">
                             <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/main-category.html">
-                                    <span class="nav-text">Main Category</span>
+                                <a class="sidenav-item-link" href="admin/categories/create">
+                                    <span class="nav-text">Add Category</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/sub-category.html">
-                                    <span class="nav-text">Sub Category</span>
+                                <a class="sidenav-item-link" href="admin/category">
+                                    <span class="nav-text">List Category</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+                <%--Colors--%>
+                <a class="sidenav-item-link" href="admin/colors">
+                    <i class="mdi mdi-dns-outline"></i>
+                    <span class="nav-text">Colors</span> <b class="caret"></b>
+                </a>
 
                 <!-- Products -->
                 <li class="has-sub">
@@ -174,7 +180,7 @@
 
                 <!-- Brands -->
                 <li>
-                    <a class="sidenav-item-link" href="../../../../../../../ekka-admin/brand-list.html">
+                    <a class="sidenav-item-link" href="admin/brands">
                         <i class="mdi mdi-tag-faces"></i>
                         <span class="nav-text">Brands</span>
                     </a>

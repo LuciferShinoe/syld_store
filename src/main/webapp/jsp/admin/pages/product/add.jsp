@@ -1,4 +1,53 @@
-<!-- CONTENT WRAPPER -->
+<%@ taglib prefix="spForm" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+    .form-control {
+        border: 2px solid #ced4da!important;
+    }
+    .colors input{
+        width: 43px;
+        height: 46px;
+        border: none!important;
+    }
+    .sizes{
+        height: 46px;
+    }
+    .sizes div{
+        height: 0!important;
+    }
+
+    .ec-vendor-uploads .thumb-upload {
+        border-radius: 8px !important;
+        padding: 0!important;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6) !important;
+        overflow: hidden;
+    }
+    .avatar-preview{
+        padding: 0!important;
+        transition: .2s ease;
+        transform: scale(1.1);
+    }
+    .thumb-preview{
+        padding: 0!important;
+        transform: scale(1.1);
+    }
+    .image-thumb-preview{
+        object-fit: cover;
+
+    }
+    .avatar-upload{
+        padding: 0!important;
+        overflow: hidden;
+        transition: .2s ease;
+        border-radius: 8px!important;
+        box-shadow: 0 0 8px rgba(0,0,0,0.6) !important;
+    }
+    .avatar-upload:hover .avatar-preview{
+        transform: scale(1.2);
+        transition: .2s ease;
+
+    }
+</style>
 <div class="ec-content-wrapper">
     <div class="content">
         <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
@@ -20,22 +69,23 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="row ec-vendor-uploads">
+                        <%--@elvariable id="product" type=""--%>
+                        <spForm:form class="row ec-vendor-uploads" modelAttribute="product">
                             <div class="col-lg-4">
                                 <div class="ec-vendor-img-upload">
                                     <div class="ec-vendor-main-img">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
-                                                <input type='file' id="imageUpload" class="ec-image-upload"
+                                                <spForm:input path="files" type='file' cssStyle="border: 2px solid #ced4da!important;" id="imageUpload" cssClass="ec-image-upload"
                                                        accept=".png, .jpg, .jpeg" />
                                                 <label for="imageUpload"><img
-                                                        src="assets/img/icons/edit.svg"
+                                                        src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                         class="svg_img header_svg" alt="edit" /></label>
                                             </div>
                                             <div class="avatar-preview ec-preview">
                                                 <div class="imagePreview ec-div-preview">
                                                     <img class="ec-image-preview"
-                                                         src="assets/img/products/vender-upload-preview.jpg"
+                                                         src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-preview.jpg"
                                                          alt="edit" />
                                                 </div>
                                             </div>
@@ -43,102 +93,102 @@
                                         <div class="thumb-upload-set colo-md-12">
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload01"
-                                                           class="ec-image-upload"
-                                                           accept=".png, .jpg, .jpeg" />
+                                                    <spForm:input path="files" type='file' id="thumbUpload01"
+                                                           cssClass="ec-image-upload"
+                                                           accept=".png, .jpg, .jpeg"/>
                                                     <label for="imageUpload"><img
-                                                            src="assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
                                                 <div class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
-                                                        <img class="image-thumb-preview ec-image-preview"
-                                                             src="assets/img/products/vender-upload-thumb-preview.jpg"
+                                                        <img class="image-thumb-preview ec-image-preview" style="object-fit: cover"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload02"
+                                                    <spForm:input path="files" type="file" id="thumbUpload02"
                                                            class="ec-image-upload"
                                                            accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"><img
-                                                            src="assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
                                                 <div class="thumb-preview ec-preview">
-                                                    <div class="image-thumb-preview">
+                                                    <div class="image-thumb-preview" >
                                                         <img class="image-thumb-preview ec-image-preview"
-                                                             src="assets/img/products/vender-upload-thumb-preview.jpg"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload03"
+                                                    <spForm:input  path="files" type="file" id="thumbUpload03"
                                                            class="ec-image-upload"
                                                            accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"><img
-                                                            src="${pageContext.request.contextPath}/assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
                                                 <div class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
                                                         <img class="image-thumb-preview ec-image-preview"
-                                                             src="${pageContext.request.contextPath}/assets/img/products/vender-upload-thumb-preview.jpg"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload04"
+                                                    <spForm:input path="files" type="file" id="thumbUpload04"
                                                            class="ec-image-upload"
                                                            accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"><img
-                                                            src="${pageContext.request.contextPath}/assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
-                                                <div class="thumb-preview ec-preview">
+                                                <div  class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
                                                         <img class="image-thumb-preview ec-image-preview"
-                                                             src="${pageContext.request.contextPath}/assets/img/products/vender-upload-thumb-preview.jpg"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload05"
+                                                    <spForm:input path="files" type="file"  id="thumbUpload05"
                                                            class="ec-image-upload"
                                                            accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"><img
-                                                            src="${pageContext.request.contextPath}/assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
                                                 <div class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
                                                         <img class="image-thumb-preview ec-image-preview"
-                                                             src="${pageContext.request.contextPath}/assets/img/products/vender-upload-thumb-preview.jpg"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="thumb-upload">
                                                 <div class="thumb-edit">
-                                                    <input type='file' id="thumbUpload06"
+                                                    <spForm:input path="files" type="file" id="thumbUpload06"
                                                            class="ec-image-upload"
                                                            accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"><img
-                                                            src="${pageContext.request.contextPath}/assets/img/icons/edit.svg"
+                                                            src="${pageContext.request.contextPath}/assets/admin/img/icons/edit.svg"
                                                             class="svg_img header_svg" alt="edit" /></label>
                                                 </div>
-                                                <div class="thumb-preview ec-preview">
+                                                <div  class="thumb-preview ec-preview">
                                                     <div class="image-thumb-preview">
                                                         <img class="image-thumb-preview ec-image-preview"
-                                                             src="${pageContext.request.contextPath}/assets/img/products/vender-upload-thumb-preview.jpg"
+                                                             src="${pageContext.request.contextPath}/assets/admin/img/products/vender-upload-thumb-preview.jpg"
                                                              alt="edit" />
                                                     </div>
                                                 </div>
@@ -148,124 +198,122 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="ec-vendor-upload-detail">
-                                    <spForm:form class="row g-3" method="post" action="${pageContext.request.contextPath}/product/add" modelAttribute="product_create"/>
+                                <div class="ec-vendor-upload-detail row">
+                                    <form class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Product name</label>
-                                            <spForm:input path="product_name" type="text" class="form-control slug-title" id="inputEmail4"/>
+                                            <spForm:label path="product_name" class="form-label">Product name</spForm:label>
+                                            <spForm:input path="product_name" cssClass="form-control slug-title" cssStyle="border: 2px solid #ced4da!important" required="true"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Select Categories</label>
-                                            <spForm:select path="category" name="categories" id="Categories" class="form-select">
+                                            <spForm:select path="category_id" cssStyle="border: 2px solid #ced4da!important;"  cssClass="form-select">
+                                                <c:forEach var="category_parent" items="${categories}">
+                                                    <optgroup label="${category_parent.parent.category_name}">
+                                                        <c:forEach var="child" items="${category_parent.children}">
+                                                            <option value="${child.id}">${child.category_name}</option>
+                                                        </c:forEach>
+                                                    </optgroup>
+                                                </c:forEach>
+                                            </spForm:select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <spForm:label path="product_slug" cssClass="col-12 col-form-label">Slug</spForm:label>
+                                            <div class="col-12">
+                                                <spForm:input path="product_slug" cssStyle="border: 2px solid #ced4da!important;" cssClass="form-control here set-slug" type="text" required="true"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">Select Brand</label>
+                                            <spForm:select path="brand_id" cssStyle="border: 2px solid #ced4da!important;"  cssClass="form-select">
                                                 <optgroup label="Fashion">
-                                                    <spForm:option path="category_id" value="t-shirt">T-shirt</spForm:option>
-                                                    <spForm:option path="category_id" value="dress">Dress</spForm:option>
+                                                    <option value="t-shirt">T-shirt</option>
+                                                    <option value="dress">Dress</option>
                                                 </optgroup>
                                                 <optgroup label="Furniture">
-                                                    <spForm:option path="category_id" value="table">Table</spForm:option>
-                                                    <spForm:option path="category_id" value="sofa">Sofa</spForm:option>
+                                                    <option value="table">Table</option>
+                                                    <option value="sofa">Sofa</option>
                                                 </optgroup>
                                                 <optgroup label="Electronic">
-                                                    <spForm:option path="category_id" value="phone">I Phone</spForm:option>
-                                                    <spForm:option path="category_id" value="laptop">Laptop</spForm:option>
+                                                    <option value="phone">I Phone</option>
+                                                    <option value="laptop">Laptop</option>
                                                 </optgroup>
                                             </spForm:select>
                                         </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Select Brands</label>
-                                        <spForm:select path="Brand" name="brands" id="Brands" class="form-select">
-                                            <optgroup label="Fashion">
-                                                <option value="t-shirt">T-shirt</option>
-                                                <option value="dress">Dress</option>
-                                            </optgroup>
-                                            <optgroup label="Furniture">
-                                                <option value="table">Table</option>
-                                                <option value="sofa">Sofa</option>
-                                            </optgroup>
-                                            <optgroup label="Electronic">
-                                                <option value="phone">I Phone</option>
-                                                <option value="laptop">Laptop</option>
-                                            </optgroup>
-                                        </spForm:select>
-                                    </div>
                                         <div class="col-md-12">
-                                            <label for="slug" class="col-12 col-form-label">Slug</label>
-                                            <div class="col-12">
-                                                <spForm:input path="slug" id="slug" name="slug" class="form-control here set-slug" type="text"/>
+                                            <spForm:label path="product_desc" class="form-label">Sort Description</spForm:label>
+                                            <spForm:textarea path="product_desc" cssClass="form-control" cssStyle="border: 2px solid #ced4da!important;" rows="2" required="true"></spForm:textarea>
+                                        </div>
+<%--                                        colors--%>
+                                        <div class="col-md-4 mb-25  mt-3">
+                                            <label class="form-label">Colors</label>
+                                            <div class="row justify-content-evenly align-items-center colors">
+                                                <input type="color" class="form-control form-control-color"
+                                                       id="exampleColorInput1" value="#ff6191"
+                                                       title="Choose your color">
+                                                <input type="color" class="form-control form-control-color"
+                                                       id="exampleColorInput2" value="#33317d"
+                                                       title="Choose your color">
+                                                <input type="color" class="form-control form-control-color"
+                                                       id="exampleColorInput3" value="#56d4b7"
+                                                       title="Choose your color">
+                                                <input type="color" class="form-control form-control-color"
+                                                       id="exampleColorInput4" value="#009688"
+                                                       title="Choose your color">
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="form-label">Sort Description</label>
-                                            <spForm:textarea path="product_desc" class="form-control" rows="2"></spForm:textarea>
-                                        </div>
-                                        <div class="col-md-4 mb-25">
-                                            <label class="form-label">Colors</label>
-                                            <spForm:input type="color" class="form-control form-control-color"
-                                                   id="exampleColorInput1" value="#ff6191"
-                                                   title="Choose your color"/>
-                                            <spForm:input type="color" class="form-control form-control-color"
-                                                   id="exampleColorInput2" value="#33317d"
-                                                   title="Choose your color"/>
-                                            <spForm:input type="color" class="form-control form-control-color"
-                                                   id="exampleColorInput3" value="#56d4b7"
-                                                   title="Choose your color"/>
-                                            <spForm:input type="color" class="form-control form-control-color"
-                                                   id="exampleColorInput4" value="#009688"
-                                                   title="Choose your color"/>
-                                        </div>
-                                        <div class="col-md-8 mb-25">
-                                            <label class="form-label">Size</label>
-                                            <div class="form-checkbox-box">
-                                                <div class="form-check form-check-inline">
-                                                    <spForm:input path="Size" type="checkbox" name="size1" value="size"/>
+
+                                        <div class="col-md-8 mb-25  mt-3">
+                                            <spForm:label path="sizes" class="form-label">Size</spForm:label>
+                                            <div class="form-checkbox-box d-flex justify-content-start align-items-center sizes">
+                                                <div class="form-check form-check-inline ">
+                                                    <spForm:checkbox path="sizes" value="size" required="true"/>
                                                     <label>S</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <spForm:input type="checkbox" name="size1" value="size"/>
+                                                    <spForm:checkbox path="sizes" value="size"/>
                                                     <label>M</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <spForm:input type="checkbox" name="size1" value="size"/>
+                                                    <spForm:checkbox path="sizes" value="size"/>
                                                     <label>L</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <spForm:input type="checkbox" name="size1" value="size"/>
+                                                    <spForm:checkbox path="sizes" value="size"/>
                                                     <label>XL</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <spForm:input type="checkbox" name="size1" value="size"/>
+                                                    <spForm:checkbox path="sizes" value="size"/>
                                                     <label>XXL</label>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label class="form-label">Price <span>( In USD
-																)</span></label>
-                                            <spForm:input path="product_price" type="number" class="form-control" id="price1"/>
+                                            <label class="form-label">Price <span>( In USD )</span></label>
+                                            <spForm:input path="product_price" type="number" min="1" value="1" cssStyle="border: 2px solid #ced4da!important;" cssClass="form-control" required="true"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Quantity</label>
-                                            <spForm:input path="product_quantity" type="number" class="form-control" id="quantity1"/>
+                                            <spForm:input path="product_quantity" type="number" min="1" value="1" cssStyle="border: 2px solid #ced4da!important;" cssClass="form-control" required="true"/>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 my-3">
                                             <label class="form-label">Ful Detail</label>
-                                            <spForm:textarea path="product_detail" class="form-control" rows="4"></spForm:textarea>
+                                            <spForm:textarea path="product_detail" cssStyle="border: 2px solid #ced4da!important;" cssClass="form-control" rows="4" required="true"></spForm:textarea>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 mb-3">
                                             <label class="form-label">Product Tags <span>( Type and
 																make comma to separate tags )</span></label>
-                                            <spForm:input path="group_tag" type="text" class="form-control" id="group_tag"
-                                                   name="group_tag" value="" placeholder=""
-                                                   data-role="tagsinput" />
+                                            <spForm:input path="group_tag" cssStyle="border: 2px solid #ced4da!important;" required="true" type="text" cssClass="form-control"
+                                                   name="group_tag" value="" placeholder="Type tab name here and it auto create!"/>
                                         </div>
                                         <div class="col-md-12">
-                                            <spForm:button type="submit" class="btn btn-primary">Submit</spForm:button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
-
+                                    </form>
                                 </div>
-
                             </div>
-                        </div>
+                        </spForm:form>
                     </div>
                 </div>
             </div>

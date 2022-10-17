@@ -1,6 +1,7 @@
 package com.syld.store.services.category;
 
 import com.syld.store.dto.CategoryDto;
+import com.syld.store.dto.ListCategoryDto;
 import com.syld.store.interfaces.services.ICrudService;
 import org.springframework.data.domain.Page;
 
@@ -16,4 +17,6 @@ public interface CategoryService extends ICrudService<CategoryDto,String> {
     CategoryDto getByName(String name);
 
     CategoryDto getParent(String parent_id);
+
+    List<ListCategoryDto> getByParentList();
 }

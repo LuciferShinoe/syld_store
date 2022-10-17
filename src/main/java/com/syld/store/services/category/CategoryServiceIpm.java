@@ -1,6 +1,7 @@
 package com.syld.store.services.category;
 
 import com.syld.store.dto.CategoryDto;
+import com.syld.store.dto.ListCategoryDto;
 import com.syld.store.entities.Category;
 import com.syld.store.repositories.CategoryRepository;
 import com.syld.store.ultis.SlugGenerator;
@@ -30,7 +31,20 @@ public class CategoryServiceIpm implements CategoryService {
 
     @Override
     public List<CategoryDto> getAll() {
-        return categoryRepository.findAll().stream().map(category -> modelMapper.map(category, CategoryDto.class)).toList();
+        List<CategoryDto> list = categoryRepository.findAll().stream().map(category -> modelMapper.map(category, CategoryDto.class)).toList();
+
+        for (CategoryDto categoryDto : list) {
+            if (!Objects.equals(categoryDto.getParent_id(), "parent")) {
+                Optional<Category> category = categoryRepository.findById(categoryDto.getParent_id());
+                if (category.isPresent()){
+                    categoryDto.setParent(category.get());
+                }
+            }else {
+                categoryDto.setParent(null);
+            }
+        }
+
+        return list;
     }
 
     final String default_thumbnail = "/assets/admin/img/products/vender-upload-preview.jpg";
@@ -142,10 +156,30 @@ public class CategoryServiceIpm implements CategoryService {
     @Override
     public CategoryDto getParent(String parent_id) {
         try {
-            return modelMapper.map(categoryRepository.findParentCategory(parent_id,"parent"),CategoryDto.class);
-        }catch (Exception e){
+            return modelMapper.map(categoryRepository.findParentCategory(parent_id, "parent"), CategoryDto.class);
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public List<ListCategoryDto> getByParentList() {
+        List<ListCategoryDto> categoryDtoList = new ArrayList<>();
+
+        try {
+            List<Category> parents = categoryRepository.findParent("parent");
+
+            for (Category category : parents) {
+                List<Category> categoryList = categoryRepository.findByParent(category.getId());
+                ListCategoryDto categoryDto = new ListCategoryDto();
+                categoryDto.setParent(modelMapper.map(category, CategoryDto.class));
+                categoryDto.setChildren(categoryList.stream().map(child -> modelMapper.map(child, CategoryDto.class)).toList());
+                categoryDtoList.add(categoryDto);
+            }
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return categoryDtoList;
     }
 }

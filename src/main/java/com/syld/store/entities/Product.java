@@ -2,6 +2,7 @@ package com.syld.store.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@SQLDelete(sql = "update prodduct set state = false where id = ?")
 public class Product {
 
     @javax.persistence.Id
@@ -36,10 +38,11 @@ public class Product {
 
     private int sale_off = 0;
 
-    private String slug;
-
 
     private boolean state = Boolean.TRUE;
+
+    private String slug;
+
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
 

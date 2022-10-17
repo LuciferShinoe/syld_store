@@ -9,7 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BrandRepository extends JpaRepository<Brand, String>  {
+public interface BrandRepository extends JpaRepository<Brand, String> {
+
+    @Query(value = "select * from brand where brand_slug = ?1 and id !=?2", nativeQuery = true)
+    Optional<Brand> getBySlugNotSame(String slug, String id);
+    @Query(value = "select * from brand where brand_name = ?1 and id !=?2", nativeQuery = true)
+    Optional<Brand> getByNameNotSame(String slug, String id);
 
     @Query(value = "select * from brand where brand_name =?1", nativeQuery = true)
     Brand findByBrand_name(String name);
