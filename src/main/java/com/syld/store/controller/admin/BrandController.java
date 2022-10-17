@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -32,7 +31,6 @@ public class BrandController extends BaseController {
             log.info(e.getMessage());
         }
         return view(model, "List Brand", "brand/list", this.admin_layout );
-
     }
 
     @GetMapping(path = "/{slug}")
@@ -57,6 +55,7 @@ public class BrandController extends BaseController {
         }
         return view(model, "Create_Brands", "brand/add",this.admin_layout);
     }
+
     @PostMapping(path = "/create")
     public String Save(@Valid @ModelAttribute("brands") @NotNull BrandDto brandDto, BindingResult bindingResult, Model model){
 
@@ -100,6 +99,7 @@ public class BrandController extends BaseController {
         }
         return "redirect:/admin/brands/";
     }
+
     @GetMapping(path = "remove/{id}")
     public String Remove(RedirectAttributes redirectAttributes, @PathVariable String id){
         try {
@@ -108,7 +108,6 @@ public class BrandController extends BaseController {
         }catch (Exception e) {
             redirectAttributes.addAttribute("message", "Falied");
         }
-        return "redirct:/admin/brands";
+        return "redirect:/admin/brands";
     }
-
 }
