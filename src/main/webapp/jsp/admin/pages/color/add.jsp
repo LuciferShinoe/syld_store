@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spForm" uri="http://www.springframework.org/tags/form" %>
 <!-- CONTENT WRAPPER -->
 <div class="ec-content-wrapper">
     <div class="content">
@@ -14,20 +15,20 @@
                         <div class="ec-cat-form">
                             <h4>Add New Color</h4>
 
-                            <form>
-
+                            <%--@elvariable id="color" type=""--%>
+                            <spForm:form modelAttribute="color" action="${pageContext.request.contextPath}/admin/colors/create">
                                 <div class="form-group row">
-                                    <label for="text" class="col-12 col-form-label">Color Name</label>
+                                    <label for="color_name" class="col-12 col-form-label">Color Name</label>
                                     <div class="col-12">
-                                        <input id="text" name="text" class="form-control here slug-title" type="text">
+                                        <spForm:input path="color_name"  class="form-control here slug-title" type="text"/>
+                                        <spForm:errors path="color_name"    />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="slug" class="col-12 col-form-label">Code Color</label>
+                                    <label for="color_code" class="col-12 col-form-label">Code Color</label>
                                     <div class="col-12">
-                                        <input id="slug" name="slug" class="form-control here set-slug" type="text">
-                                        <small>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
+                                        <spForm:input path="color_code" type="color"/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -36,7 +37,7 @@
                                     </div>
                                 </div>
 
-                            </form>
+                            </spForm:form>
 
                         </div>
                     </div>

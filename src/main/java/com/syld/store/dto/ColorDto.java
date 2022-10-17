@@ -14,9 +14,9 @@ public class ColorDto {
 
     private String Id;
 
-    private String name;
+    private String color_name;
 
-    private String colorCode;
+    private String color_code;
 
     private boolean state = Boolean.TRUE;
 

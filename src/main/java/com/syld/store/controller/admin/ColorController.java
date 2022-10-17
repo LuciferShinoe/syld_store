@@ -33,7 +33,7 @@ public class ColorController extends BaseController {
     @GetMapping(path = "/create")
     public String Save(Model model){
         try{
-            model.addAttribute("colors", new ColorDto());
+            model.addAttribute("color", new ColorDto());
         }catch (Exception e){
             log.info(e.getMessage());
         }
@@ -44,18 +44,18 @@ public class ColorController extends BaseController {
     @PostMapping(path = "/create")
     public String Save(@Valid @ModelAttribute("colors") ColorDto colorDto, BindingResult bindingResult){
 
-        ColorDto colorDto_ = colorService.getColorCode(colorDto.getColorCode());
+        ColorDto colorDto_ = colorService.getColorCode(colorDto.getColor_code());
         if(colorDto_ != null){
             bindingResult.rejectValue("colorCode", "", "Color code has taken !");
         }
 
-        ColorDto colorDto__ = colorService.getName(colorDto.getName());
+        ColorDto colorDto__ = colorService.getName(colorDto.getColor_name());
         if(colorDto__ != null) {
             bindingResult.rejectValue("Name", "", "Color Name has taken !");
         }
 
         try{
-
+            colorService.save(colorDto);
         }catch (Exception e){
             log.info(e.getMessage());
         }
@@ -65,7 +65,7 @@ public class ColorController extends BaseController {
     @GetMapping(path = "/update/{slug}")
     public String Update(Model model, @PathVariable String slug){
         try{
-            model.addAttribute("color_edit", colorService.getBySlugName(slug));
+            model.addAttribute("color_edit", colorService);
 
         }catch (Exception e){
             log.info((e.getMessage()));

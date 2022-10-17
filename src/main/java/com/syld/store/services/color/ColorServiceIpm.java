@@ -7,12 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import javax.print.attribute.standard.PageRanges;
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,7 +25,6 @@ public class ColorServiceIpm implements ColorService {
 
     @Override
     public void save(ColorDto entity) throws Exception {
-
         try{
             Color color = this.modelMapper.map(entity, Color.class);
             color.setId(UUID.randomUUID().toString());
@@ -82,7 +78,7 @@ public class ColorServiceIpm implements ColorService {
     @Override
     public ColorDto getName(String name) {
         Color color = colorRepository.findByName(name);
-        if(name != null){
+        if(color != null){
             return modelMapper.map(color, ColorDto.class);
         }
         return null;
@@ -91,17 +87,8 @@ public class ColorServiceIpm implements ColorService {
     @Override
     public ColorDto getColorCode(String code) {
         Color color = colorRepository.findByColorCode(code);
-        if(code != null){
+        if(color != null){
             return  modelMapper.map(color, ColorDto.class);
-        }
-        return null;
-    }
-
-    @Override
-    public ColorDto getBySlugName(String slug) {
-        Optional<Color> color = colorRepository.findBySlug(slug);
-        if(color.isPresent()){
-            return modelMapper.map(color, ColorDto.class);
         }
         return null;
     }
