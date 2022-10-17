@@ -29,7 +29,7 @@
                                             <div class="single-product-cover">
                                                 <div class="single-slide zoom-image-hover">
                                                     <img class="img-responsive"
-                                                         src="${pageContext.request.contextPath}${category_detail.category_thumbnail}"
+                                                         src="${pageContext.request.contextPath}${brand_detail.brand_logo}"
                                                          alt="">
                                                 </div>
                                             </div>
@@ -40,7 +40,7 @@
                             <div class="col-xl-5 col-lg-6">
                                 <div class="row product-overview">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label">Category name</label>
+                                        <label class="form-label">Brand name</label>
                                         <input class="form-control slug-title"
                                                value=" ${category_detail.category_name}" readonly>
 
