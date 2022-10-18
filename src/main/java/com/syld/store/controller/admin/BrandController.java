@@ -88,7 +88,7 @@ public class BrandController extends BaseController {
 
     @PostMapping(path = "/update")
     public String Update(@Valid @ModelAttribute("brand_edit") BrandDto brandDto, BindingResult bindingResult, Model model){
-//        chua bat loi trung slug trung ten
+
         if(bindingResult.hasErrors()) {
             return  view(model, "Edit - Brand", "brand/edit", this.admin_layout);
         }
