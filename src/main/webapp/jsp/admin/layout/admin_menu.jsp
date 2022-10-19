@@ -87,12 +87,12 @@
                     <div class="collapse">
                         <ul class="sub-menu" id="category" data-parent="#sidebar-menu">
                             <li class="">
-                                <a class="sidenav-item-link" href="admin/categories/create">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/categories/create">
                                     <span class="nav-text">Add Category</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a class="sidenav-item-link" href="admin/category">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/categories">
                                     <span class="nav-text">List Category</span>
                                 </a>
                             </li>
@@ -102,11 +102,26 @@
 
                 <%--Colors--%>
                 <li class="has-sub">
-                        <a class="sidenav-item-link" href="admin/colors">
-                            <i class="mdi mdi-dns-outline"></i>
-                            <span class="nav-text">Colors</span> <b class="caret"></b>
-                        </a>
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-dns-outline"></i>
+                        <span class="nav-text">Colors & Size</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="color" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/colors">
+                                    <span class="nav-text">List Colors</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/sizes">
+                                    <span class="nav-text">List Sizes</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
                 <!-- Products -->
                 <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)">
@@ -116,25 +131,21 @@
                     <div class="collapse">
                         <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
                             <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/product-add.html">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/products/create">
                                     <span class="nav-text">Add Product</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/product-list.html">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/products">
                                     <span class="nav-text">List Product</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/product-grid.html">
+                                <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/products/gird">
                                     <span class="nav-text">Grid Product</span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="../../../../../../../ekka-admin/product-detail.html">
-                                    <span class="nav-text">Product Detail</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </li>
@@ -181,7 +192,7 @@
 
                 <!-- Brands -->
                 <li>
-                    <a class="sidenav-item-link" href="admin/brands">
+                    <a class="sidenav-item-link" href="${pageContext.request.contextPath}/admin/brands">
                         <i class="mdi mdi-tag-faces"></i>
                         <span class="nav-text">Brands</span>
                     </a>

@@ -10,7 +10,7 @@
                     <span><i class="mdi mdi-chevron-right"></i></span>Category</p>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/admin/category" class="btn btn-primary"> View All
+                <a href="${pageContext.request.contextPath}/admin/categories" class="btn btn-primary"> View All
                 </a>
             </div>
         </div>

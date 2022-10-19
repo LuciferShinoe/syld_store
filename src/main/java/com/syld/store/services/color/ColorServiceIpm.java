@@ -29,6 +29,7 @@ public class ColorServiceIpm implements ColorService {
             Color color = this.modelMapper.map(entity, Color.class);
             color.setId(UUID.randomUUID().toString());
             colorRepository.save(color);
+
         }catch (Exception e){
                 log.info(e.getMessage());
                 throw e;
@@ -89,6 +90,11 @@ public class ColorServiceIpm implements ColorService {
         if(color != null){
             return  modelMapper.map(color, ColorDto.class);
         }
+        return null;
+    }
+
+    @Override
+    public ColorDto getListColor() {
         return null;
     }
 

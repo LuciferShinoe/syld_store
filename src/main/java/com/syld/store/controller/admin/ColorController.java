@@ -33,11 +33,12 @@ public class ColorController extends BaseController {
     @GetMapping(path = "/create")
     public String Save(Model model){
         try{
-            model.addAttribute("color", new ColorDto());
+            model.addAttribute("colors", new ColorDto());
         }catch (Exception e){
             log.info(e.getMessage());
         }
-        return view(model, "Create Color", "color/add", this.admin_layout);
+
+        return view(model, "Create_Colors", "color/add", this.admin_layout);
     }
 
     // Truyen du lieu len server va check code color
@@ -51,7 +52,7 @@ public class ColorController extends BaseController {
 
         ColorDto colorDto__ = colorService.getName(colorDto.getColor_name());
         if(colorDto__ != null) {
-            bindingResult.rejectValue("Name", "", "Color Name has taken !");
+            bindingResult.rejectValue("color_name", "", "Color name has taken !");
         }
 
         try{

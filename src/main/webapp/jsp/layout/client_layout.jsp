@@ -156,7 +156,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="ravenueRating">Fashion Accessories</a></li>
+                            <li><a href="ravenueRating">Revenue Rating </a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>

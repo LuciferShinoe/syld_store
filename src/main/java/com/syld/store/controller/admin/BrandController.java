@@ -36,8 +36,8 @@ public class BrandController extends BaseController {
     @GetMapping(path = "/{slug}")
     public String BrandDetail(Model model, @PathVariable String slug) {
         try {
-            model.addAttribute("brand   _detail", brandService.getBySlugName(slug));
-            return view(model, "Brand - list", "brand/detail", this.admin_layout);
+            model.addAttribute("brand_detail", brandService.getBySlugName(slug));
+            return view(model, "Brand - detail", "brand/detail", this.admin_layout);
         } catch (Exception e) {
             log.info(e.getMessage());
         }

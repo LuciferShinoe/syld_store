@@ -14,4 +14,5 @@ public interface ColorService extends ICrudService<ColorDto,String> {
 
     ColorDto getColorCode(String code_name);
 
+    ColorDto getListColor();
 }

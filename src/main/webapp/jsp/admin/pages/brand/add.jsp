@@ -9,7 +9,7 @@
                     <span><i class="mdi mdi-chevron-right"></i></span>Brand</p>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/admin/pages/brand" class="btn btn-primary"> View All
+                <a href="${pageContext.request.contextPath}/admin/brands" class="btn btn-primary"> View All
                 </a>
             </div>
         </div>
