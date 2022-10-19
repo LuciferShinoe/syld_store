@@ -62,7 +62,7 @@ public class ColorController extends BaseController {
         }catch (Exception e){
             log.info(e.getMessage());
         }
-        return "redirect:/admin/color?page=0&limit=8";
+        return "redirect:/admin/colors?page=0&limit=8";
     }
 
     @GetMapping(path = "/update/{color_name}")
