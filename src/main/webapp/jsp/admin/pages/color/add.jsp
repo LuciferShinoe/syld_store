@@ -23,15 +23,15 @@
                     <%--@elvariable id="colors" type=""--%>
                     <spForm:form modelAttribute="colors" action="${pageContext.request.contextPath}/admin/colors/create">
                         <div class="form-group row">
-                            <label for="color_name" class="col-12 col-form-label">Color Name</label>
+                            <spForm:label for="color_name" path="color_name" class="col-12 col-form-label">Color Name</spForm:label>
                             <div class="col-12">
                                 <spForm:input path="color_name"  class="form-control here slug-title" type="text"/>
-                                <spForm:errors path="color_name"    />
+                                <spForm:errors path="color_name"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="color_code" class="col-12 col-form-label">Code Color</label>
+                            <spForm:label for="color_code" path="color_code" class="col-12 col-form-label">Code Color</spForm:label>
                             <div class="col-12">
                                 <spForm:input path="color_code" type="color"/>
                             </div>

@@ -29,7 +29,6 @@ public class ColorServiceIpm implements ColorService {
             Color color = this.modelMapper.map(entity, Color.class);
             color.setId(UUID.randomUUID().toString());
             colorRepository.save(color);
-
         }catch (Exception e){
                 log.info(e.getMessage());
                 throw e;
@@ -92,6 +91,25 @@ public class ColorServiceIpm implements ColorService {
         }
         return null;
     }
+
+    @Override
+    public ColorDto getByNameNotSame(String name, String id) {
+        Optional<Color> color = colorRepository.getByNameNotSame(name, id);
+        if( color.isPresent()){
+            return modelMapper.map(color, ColorDto.class);
+        }
+        return null;
+    }
+
+    @Override
+    public ColorDto getByColor_name(String color_name) {
+        Optional<Color> color = colorRepository.findByColor_name(color_name);
+        if(color.isPresent()) {
+            return modelMapper.map(color, ColorDto.class);
+        }
+        return null;
+    }
+
 
     @Override
     public ColorDto getListColor() {

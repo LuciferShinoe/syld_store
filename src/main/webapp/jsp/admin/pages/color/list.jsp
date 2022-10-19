@@ -38,14 +38,14 @@
 
                                 <tbody>
                                 <c:forEach var="color" items="${colors}">
-                                    <td>${color.colorCode}</td>
-                                    <td>${color.name}</td>
+                                    <td>${color.color_code}</td>
+                                    <td>${color.color_name}</td>
                                     <td>${color.state?"Active":"Deleted"}</td>
 
                                     <td>
                                         <div class="btn-group">
                                             <button type="button"
-                                                    class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/admin/colors/${color.color_slug}">Info</a>
+                                                    class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/admin/colors/${color.color_name}">Info</a>
                                             </button>
                                             <button type="button"
                                                     class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
@@ -54,10 +54,12 @@
                                                 <span class="sr-only">Info</span>
                                             </button>
 
-                                            <div class="button">
-                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/colors/update/${color.color_slug}">Edit</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                   href="${pageContext.request.contextPath}/admin/colors/update/${color.color_name}">Edit</a>
                                                 <c:if test="${color.state}">
-                                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/colors/remove/${color.id}">Delete</a>
+                                                    <a class="dropdown-item"
+                                                       href="${pageContext.request.contextPath}/admin/colors/remove/${color.id}">Delete</a>
                                                 </c:if>
                                             </div>
                                         </div>

@@ -10,7 +10,7 @@
                     <span><i class="mdi mdi-chevron-right"></i></span>Color</p>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/admin/sizes" class="btn btn-primary"> View All
+                <a href="${pageContext.request.contextPath}/admin/colors" class="btn btn-primary"> View All
                 </a>
             </div>
         </div>
@@ -22,7 +22,6 @@
                     </div>
 
                     <%--@elvariable id="color_edit" type=""--%>
-
                     <spForm:form
                                  action="${pageContext.request.contextPath}/admin/colors/update" method="post"
                                  modelAttribute="color_edit">

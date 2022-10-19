@@ -2,6 +2,7 @@ package com.syld.store.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@SQLDelete(sql = "UPDATE colors SET state = false WHERE id=?")
 public class Color {
 
     @javax.persistence.Id
