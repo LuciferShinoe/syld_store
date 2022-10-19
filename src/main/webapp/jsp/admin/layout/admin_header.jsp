@@ -14,10 +14,12 @@
 <!-- PLUGINS CSS STYLE -->
 <link href="${pageContext.request.contextPath}/assets/admin/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/admin/plugins/simplebar/simplebar.css" rel="stylesheet" />
-
+<link href='${pageContext.request.contextPath}/assets/admin/plugins/slick/slick.min.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/assets/admin/plugins/swiper/swiper-bundle.min.css' rel='stylesheet'>
 <!-- Ekka CSS -->
 <link id="ekka-css" type="text/css" href="${pageContext.request.contextPath}/assets/admin/css/ekka.css" rel="stylesheet" />
 
 <!-- FAVICON -->
 <link href="${pageContext.request.contextPath}/assets/admin/img/favicon.png" rel="shortcut icon" />
 <script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/ckeditor/ckeditor.js"></script>

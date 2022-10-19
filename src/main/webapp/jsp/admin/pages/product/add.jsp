@@ -25,6 +25,12 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.6) !important;
         overflow: hidden;
     }
+    #tags-preview{
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        min-height: 100px;
+    }
 
     .avatar-preview {
         padding: 0 !important;
@@ -39,7 +45,6 @@
 
     .image-thumb-preview {
         object-fit: cover;
-
     }
 
     .avatar-upload {
@@ -50,6 +55,13 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.6) !important;
     }
 
+    .tag{
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 6px!important;
+        cursor: pointer;
+        margin:3px;
+        display: inline-block;
+    }
     .avatar-upload:hover .avatar-preview {
         transform: scale(1.2);
         transition: .2s ease;
@@ -258,9 +270,10 @@
                                     <div class="col-md-12">
                                         <spForm:label path="product_desc"
                                                       class="form-label">Sort Description</spForm:label>
-                                        <spForm:textarea path="product_desc" cssClass="form-control"
+                                        <spForm:input path="product_desc" id="desc" hidden="hidden"/>
+                                        <textarea id="product_desc" cssClass="form-control"
                                                          cssStyle="border: 2px solid #ced4da!important;" rows="2"
-                                                         required="true"/>
+                                                  required="true"></textarea>
                                     </div>
                                         <%--                                        colors--%>
                                     <div class="col-md-4 mb-25  mt-3">
@@ -288,11 +301,17 @@
                                     <div class="col-md-8 mb-25  mt-3">
                                         <spForm:label path="sizes" class="form-label">Size</spForm:label>
                                         <div class="form-checkbox-box d-flex justify-content-start align-items-center sizes">
-                                            <c:forEach var="size" items="${sizes}">
+                                            <c:forEach var="size" items="${sizes}" varStatus="loop">
                                                 <div class="form-check form-check-inline ">
-                                                    <spForm:checkbox path="sizes" value="${size.size_name}"
-                                                                     required="true"/>
-                                                    <label>${size.size_name}</label>
+                                                    <c:if test="${loop.index == 0 }">
+                                                        <spForm:checkbox path="sizes" value="${size.size_name}"
+                                                                         required="true"/>
+                                                        <label>${size.size_name}</label>
+                                                    </c:if>
+                                                    <c:if test="${loop.index!=0}">
+                                                        <spForm:checkbox path="sizes" value="${size.size_name}"/>
+                                                        <label>${size.size_name}</label>
+                                                    </c:if>
                                                 </div>
                                             </c:forEach>
                                         </div>
@@ -311,20 +330,25 @@
                                                       cssClass="form-control" required="true"/>
                                     </div>
                                     <div class="col-md-12 my-3">
-                                        <label class="form-label">Ful Detail</label>
-                                        <spForm:textarea path="product_detail"
+                                        <label class="form-label">Full Detail</label>
+                                        <spForm:input path="product_detail" id="detail" hidden="hidden"/>
+                                        <textarea id="product_detail"
                                                          cssStyle="border: 2px solid #ced4da!important;"
                                                          cssClass="form-control" rows="4"
-                                                         required="true"/>
+                                                  required="true"></textarea>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                        <label class="form-label">Product Tags <span>( Type and
-																make comma to separate tags )</span></label>
-                                        <spForm:input path="group_tag"
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Product Tags <span>(Type and auto create tag if new)</span></label>
+                                        <spForm:input path="group_tag" id="product_tags"
                                                       cssStyle="border: 2px solid #ced4da!important;"
                                                       required="true" type="text" cssClass="form-control"
                                                       name="group_tag" value=""
                                                       placeholder="Type tab name here and it auto create!"/>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Product Tags Preview</label>
+                                        <div id="tags-preview" style="border: 2px solid #ced4da!important;" class="form-control" name="group_tag">
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -339,8 +363,42 @@
     </div>
 </div>
 <script>
+    const handleCreateTag = (event)=>{
+        let value = event.target.value
+
+        let arr = value.split(",")
+        let htmls = ''
+        for (let item of arr){
+            if (item !== ""){
+                let html = '<div class="px-3 py-1 tag">'+item+'</div>'
+                htmls+=html
+            }
+        }
+        document.getElementById("tags-preview").innerHTML = htmls;
+    }
+    document.getElementById("product_tags").addEventListener('input',handleCreateTag)
     document.getElementById("product_name").addEventListener("input",(e)=>{
         e.preventDefault();
+    })
+    CKEDITOR.replace('product_desc',{
+        on: {
+            contentDom:function (){
+                this.editable().on('input',function (e){
+                    console.log(document.getElementById("desc"))
+                    document.getElementById('desc').value = CKEDITOR.instances.product_desc.getData();
+                })
+            }
+        }
+    })
+    CKEDITOR.replace('product_detail',{
+        on:{
+            contentDom: function() {
+                this.editable().on( 'input', function( evt ) {
+                    console.log(document.getElementById("detail"))
+                    document.getElementById('detail').value = CKEDITOR.instances.product_detail.getData();
+                } );
+            }
+        }
     })
 </script>
 

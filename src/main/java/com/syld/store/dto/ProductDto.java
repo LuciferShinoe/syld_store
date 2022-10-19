@@ -47,4 +47,6 @@ public class ProductDto {
     private List<String> sizes = new ArrayList<>();
 
     private String category_id;
+
+    private List<String> update_images = new ArrayList<>();
 }

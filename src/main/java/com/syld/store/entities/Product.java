@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-@SQLDelete(sql = "update prodduct set state = false where id = ?")
+@SQLDelete(sql = "update product set state = false where id = ?")
 public class Product {
 
     @javax.persistence.Id
@@ -40,11 +40,11 @@ public class Product {
     private int product_quantity;
 
     private int sale_off = 0;
+    private String slug;
 
 
     private boolean state = Boolean.TRUE;
 
-    private String slug;
 
     private Timestamp create_at = new Timestamp(System.currentTimeMillis());
     private Timestamp update_at = new Timestamp(System.currentTimeMillis());
@@ -52,7 +52,7 @@ public class Product {
     @ManyToOne
     Brand brand;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "product_color",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -76,7 +76,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     Set<ProductCart> productCartList = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     Set<Tag> tags = new HashSet<>();
 
     public void addImage(ProductImage productImage) {
@@ -90,4 +90,5 @@ public class Product {
     public void addTagToProduct(Tag tag) {
         this.tags.add(tag);
     }
+    public void addSizeToProduct(com.syld.store.entities.Size size){this.sizes.add(size);}
 }

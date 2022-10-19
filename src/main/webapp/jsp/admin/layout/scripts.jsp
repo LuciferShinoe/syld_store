@@ -6,6 +6,8 @@
 <script src="${pageContext.request.contextPath}/assets/admin/plugins/simplebar/simplebar.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery-zoom/jquery.zoom.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/admin/plugins/slick/slick.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/admin/plugins/swiper/swiper-bundle.min.js"></script>
+
 
 <!-- Chart -->
 <script src="${pageContext.request.contextPath}/assets/admin/plugins/charts/Chart.min.js"></script>
